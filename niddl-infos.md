@@ -10,13 +10,35 @@
 - Musikerin, Moderatorin, Performerin (Bühne, Studio, Kamera)
 - 2026: „50 Jahre N!DDL“
 
+## Werdegang (aus der Biografie auf niddl.com, Volltext: `biografie.md`)
+| Jahr | Station |
+|---|---|
+| 2003 | **Starmania** – danach Starmania-Tour (ausgezeichnet mit dem „Goldenen Ticket“) |
+| danach | Casting für **GREASE** in New York – Erkenntnis: Musical „is nicht so meines“ |
+| – | Gründung der Band **The NoNoBand** (Rock) – Auftritte u. a. bei **Nova Rock** und den **Harley Days**, weltweite Auftritte über Engagement eines großen Reiseveranstalters („Welttournee“) |
+| – | Erstes Album **TIME TO SMILE** (Rock mit Dance-Flair) – Pressetext: lebensfroh, „jeden Tag feiern, als wärs der letzte“ |
+| – | Songcontest-Song **„Knock me out“** in Schweden aufgenommen – Einsendeschluss verpasst |
+| – | **Georg Danzer**: „Du bist so a leiwande Oide, warum dazöhst die Gschichten ned in deiner eigenen Sproch?“ – schrieb ihr den Song **„Mich siehst du nie mehr“** |
+| 2016 | Erstpräsentation von „Mich siehst du nie mehr“ bei der **DANKE DANZER Nacht** (nur mit Klavier), neben Monika Ballwein, Wilfried, Roman Gregory, Ulli Bär |
+| – | Wechsel zu Deutsch/Mundart: Gig im Kulturcafé auf Einladung von **Thomas Andreas Beck** – aus „Natural Woman“ wird **„leiwande Oide“** |
+| – | **David Pross** schreibt deutsches Programm **„ALLES NEU“**; Vorgruppe von **Johnny Logan** beim 10. Hafen Open Air |
+| – | Unplugged-Version: **„GUDBAI ÄNGLISCH“** |
+| März 2018 | Show „ALL STARS“ von **Eric Papilaya & friends**, Bühne im Gericht – sie singt Tina Turner → daraus entsteht die **Tribute-to-Tina-Show** (Idee: Karl & Monika Hintermeier, Bühne im Gericht) |
+| 29.11.2019 | Tina Turners 80er: restlos ausverkaufter **Neulengbacher Saal** |
+| – | **MA48** / **48er Tandler** (Second-Hand-Laden): Song **„SECOND HAND“** mit **Dennis Jale** – Thema Müll-/Plastikvermeidung |
+| – | Sendung **„48er Tandler Lounge“** mit Dennis Jale – Wiener Musiker:innen einem breiteren Publikum zeigen |
+| (Zeitpunkt des Textes: 44 J.) | Arbeitet am **ersten Mundart-Album** |
+
+- Spitzname: **„Die Niddl aus der Donaustadt“** (wegen ihrer Energie)
+- Motto/Hashtag: **#leiwand** – „BIN GESPANNT WIE EIN SCHIRM WAS MICH NOCH SO ERWARTET.“
+
 ## TV
 - Moderiert die Musiksendung **„I loss mi ned vabiagn“** auf dem Wiener Stadtsender **W24**,
   gemeinsam mit **Dennis Jale** – stellt unentdeckte Talente und bekannte Kolleg:innen der Wiener Musikszene vor.
 
 ## Website-Bereiche (bekannt)
 - Startseite: https://www.niddl.com/
-- „The N!DDL Time(2smile-)line“ / Es war einmal: https://www.niddl.com/es_war_einmal/
+- Biografie / „The N!DDL Time(2smile-)line“ / Es war einmal: https://www.niddl.com/es_war_einmal/
 - Termine / Tour 2026
 - Kontakt: allgemeine Anfragen, Booking, Autogrammwünsche
 
