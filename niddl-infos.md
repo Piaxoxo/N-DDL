@@ -1,16 +1,60 @@
-# N!DDL – gesammelte Infos (Stand 04.10.2026)
+# N!DDL – alle Infos von www.niddl.com (Stand 04.10.2026)
 
-> Hinweis: www.niddl.com war aus der Cloud-Umgebung nicht direkt erreichbar (Netzwerk-Policy).
-> Die Infos stammen aus Websuche-Ergebnissen und sind NICHT direkt von der Seite abgeglichen.
+> Quelle: Seiteninhalt von www.niddl.com (vom Nutzer aus Chrome kopiert), ergänzt um wenige Angaben aus der Websuche (markiert mit *).
+
+## Seitenstruktur (Navigation)
+Neues · Events · Biografie · Latest Releases · Media · Kontakt
+- Begrüßung: „schön, dass du da bist …“
+- Footer: © 2021 | website by mblue.at | Impressum / Datenschutzerklärung
+- Weitere Elemente: Instagram („Follow me on instagram“), Facebook-Einbettung (Cookie-Zustimmung nötig), Newsletter-Anmeldung
 
 ## Person
-- Künstlername: **N!DDL / Niddl**
-- Bürgerlich: Anita Stelzl (geb. Ritzl), österreichische Popsängerin aus Wien
-- Bekannt geworden durch die ORF-Castingshow **Starmania**
-- Musikerin, Moderatorin, Performerin (Bühne, Studio, Kamera)
-- 2026: „50 Jahre N!DDL“
+- Künstlername: **N!DDL / Niddl** – „die Niddl aus der Donaustadt“
+- *Bürgerlich: Anita Stelzl (geb. Ritzl), Wien
+- Bekannt durch **Starmania** (2003)
+- Sängerin, Songwriterin, Moderatorin; 2026: *„50 Jahre N!DDL“
 
-## Werdegang (aus der Biografie auf niddl.com, Volltext: `biografie.md`)
+## Neues
+### Musik
+- Aktuelle Single: **„I loss mi ned vabiagn“**
+
+### Moderation – Musiksendung auf W24 („48er Tandler Lounge“)
+Gemeinsam mit ihrem Kollegen **Dennis Jale** moderiert Niddl die Musiksendung auf Wiens Stadtsender **W24**.
+Motto: **#leiwande Musik aus Wien** – unentdeckte Talente und bekannte Kolleg:innen aus der Wiener Musikszene.
+Location: der **48er Tandler** (eine der kultigsten Locations Wiens) – Bühne für heimische Musiker:innen plus Nachhaltigkeitsgedanke.
+- **IMMER SONNTAGS 20:30 auf W24**
+- Fotogalerie: https://www.w24.at/Sendungen-A-Z/48er-Tandler-Lounge/Fotos
+- Alle Folgen: https://www.w24.at/Sendungen-A-Z/48er-Tandler-Lounge/Alle-Folgen
+
+## Events / Termine
+| Datum | Event | Ort / Details | Tickets |
+|---|---|---|---|
+| 11.10.2026 | N!DDL @ Der Lustige Hermann und seine Freunde | Veranstaltungszentrum Z2000, Sparkassaplatz 2, Stockerau – Einlass 15 Uhr / Beginn 16 Uhr | ja |
+| 17.10.2026 | Tina & Elvis by N!DDL und DENNIS JALE | Basement Music, Amberg – 18:00 | ja |
+| 23.–27.10.2026 | Danzermania (5 Abende) | Orpheum Wien – 19:30 | ja |
+| 19.11.2026 | N!DDL special guest @ Wiener Wahnsinn | Schiffsfahrt Bratislava | – |
+| 20.11.2026 | N!DDL special guest @ Wiener Wahnsinn | Schiffsfahrt Bratislava | – |
+| 21.11.2026 | N!DDL special guest for Sam Brisbe | Infos | – |
+| 27.11.2026 | Tina & Elvis by N!DDL und DENNIS JALE | Leoben – 20:00 | – |
+| 28.11.2026 | N!DDL – a tribute to TINA TURNER | Metropol Wien – 19:00 | ja |
+| 01.12.2026 | N!DDL & DENNIS JALE – The Morrison Family: Christmas Lights | Das Vindobona, Wien – 19:30 | ja |
+| 02.12.2026 | N!DDL @ ROCK IN PEACE – Driving Home for Christmas | Metropol Wien – 20:00 | ja |
+| 04.12.2026 | VIENNESE LADIES GOSPEL | Infos folgen | – |
+| 08.12.2026 | VIENNESE LADIES GOSPEL | Metropoldi Wien – 19:00 | – |
+| 09.12.2026 | N!DDL | DDSG Vienna Christmas Time | – |
+| 11.12.2026 | N!DDL @ ROCK IN PEACE | Metropol Wien – 20:00 | – |
+| 13.12.2026 | N!DDL | NÖ Zivilschutzverband Jahresabschlussfeier, Schloss Zeillern | – |
+| 18.12.2026 | N!DDL @ ROCK IN PEACE | Konzerthaus Weinviertel, Ziersdorf (NÖ) – 19:30 | ja |
+| 26.12.2026 | N!DDL & friends | Wintermarkt im Prater – 19:30 | – |
+| 14.01.2027 | VIENNESE LADIES Gospel Group | KULT ZELT Peyerbach – 19:30 | ja |
+| 21.01.2027 | N!DDL – a tribute to TINA TURNER | KULT ZELT Peyerbach – 19:30 | ja |
+| 08.05.2027 | N!DDL – a tribute to TINA TURNER | Bayern – Infos folgen | – |
+| 07.–14.10.2027 | TCB Elvis Cruise feat. N!DDL | TCB Cruise 2027 – Dennis Jale & The Original Musicians Of Elvis & Friends | ja |
+
+## Biografie
+Volltext: `biografie.md` (#leiwand, „Es war einmal – NIDDL Time(2smile-)line“)
+
+### Werdegang (Kurzfassung)
 | Jahr | Station |
 |---|---|
 | 2003 | **Starmania** – danach Starmania-Tour (ausgezeichnet mit dem „Goldenen Ticket“) |
@@ -32,35 +76,35 @@
 - Spitzname: **„Die Niddl aus der Donaustadt“** (wegen ihrer Energie)
 - Motto/Hashtag: **#leiwand** – „BIN GESPANNT WIE EIN SCHIRM WAS MICH NOCH SO ERWARTET.“
 
-## TV
-- Moderiert die Musiksendung **„I loss mi ned vabiagn“** auf dem Wiener Stadtsender **W24**,
-  gemeinsam mit **Dennis Jale** – stellt unentdeckte Talente und bekannte Kolleg:innen der Wiener Musikszene vor.
+## Latest Releases
+1. Niddl – I loss mi ned vabiagn
+2. Niddl – Nimma so weh (Cello Piano Version)
+3. Niddl – Cornetto und Badegwand
+4. Niddl & Jerome Collard – Unter dem Meer
+5. Niddl feat. Lenard Luis – leiwande Zeit
+6. Niddl & Willi Dussmann – So selten bist du
+7. Niddl – jetzt oder nie
+8. A1 Smile Weihnachtssong
+9. Nimma so weh
+10. Verliabt
+11. Dennis Jale & Niddl – Pullover
 
-## Website-Bereiche (bekannt)
-- Startseite: https://www.niddl.com/
-- Biografie / „The N!DDL Time(2smile-)line“ / Es war einmal: https://www.niddl.com/es_war_einmal/
-- Termine / Tour 2026
-- Kontakt: allgemeine Anfragen, Booking, Autogrammwünsche
+Ältere Songs aus der Biografie: Time To Smile (Album), Knock me out, Mich siehst du nie mehr (von Georg Danzer), leiwande Oide, Second Hand
 
-## Termine 2026
-| Datum | Event | Ort | Uhrzeit |
-|---|---|---|---|
-| 29.08. | Special Guest @ Wiener Wahnsinn | Seyringer Kirtag | 18:00 |
-| 30.08. | Viennese Ladies | EGA Wien | 19:00 |
-| 02.09. | Sunset BBQ & N!DDL | DDSG Blue Danube Schifffahrt | 18:00 |
-| 04.09. | Special Guest @ Wiener Wahnsinn | Höfefest Groß-Enzersdorf | – |
-| 05.09. | Special Guest @ Wiener Wahnsinn | Kaiserebersdorfer Kirtag | 21:00 |
-| 10.09. | 50 Jahre N!DDL – mit musikalischen Weggefährt:innen | Orpheum Wien | 20:00 |
-| 23.–26.10. | Danzermania | Orpheum Wien | 19:30 |
-| 27.11. | Tina & Elvis by N!DDL and Dennis Jale | Leoben | 20:00 |
-| 28.11. | N!DDL – A Tribute to Tina Turner | Metropol Wien | 19:00 |
-| Dezember | weitere Termine | – | – |
+## Media
+- Pressefotos: Niddl by Alex List 2017 (2×), Niddl by Alex List 2021
+- Nutzung: kostenfrei bei Copyrightangabe **„© Alex List 2021“**
 
-## Quellen
-- https://www.niddl.com/
-- https://www.niddl.com/es_war_einmal/
-- https://www.bandsintown.com/e/107578470-niddl-at-orpheum-vienna
-- https://www.falter.at/event/976699/niddl
+## Kontakt
+**Allgemeine Anfragen / Booking / Autogrammwünsche**
+- E-Mail: **office@niddl.com**
+- Post: **Königsegggasse 5/7, 1060 Wien** (Autogrammwünsche bitte mit frankiertem Rückkuvert)
+- Newsletter-Anmeldung auf der Website
+
+## Partner („Vielen Dank an“)
+Alex List Fotografie · Dennis Jale · Linda's Fashion & Style · NÖZSV (NÖ Zivilschutzverband) · 48er (MA48 / 48er Tandler) · Geus.TV · m2k Werbeagentur
+
+## Weitere Quellen (Websuche)
 - https://de.wikipedia.org/wiki/Anita_Ritzl
+- https://www.bandsintown.com/e/107578470-niddl-at-orpheum-vienna
 - https://www.styleupyourlife.at/promi-talk-10-fragen-an-saengerin-niddl
-- https://www.youtube.com/watch?v=U9VcBpB2vCE
