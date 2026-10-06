@@ -16,7 +16,14 @@
 | 5 | **TV** `#tv` | Pinker Retro-Fernseher: Rauschen → „48er Tandler Lounge, ON AIR“ | Sendung, Sendezeit, Links zu W24 | ✅ gebaut |
 | 6 | **Buchen** `#buchen` | Neon-Jukebox: Format wählen → Platte fällt ein, Taste leuchtet | 6 Formate + Anfrageformular | ✅ gebaut |
 | 7 | **Zugabe** `#kontakt` | MIC DROP: Mikro fällt, prallt auf, Druckwelle, Kamerawackler, Konfetti | Socials als Buttons, Kontakt, Autogramme, Newsletter | ✅ gebaut |
+| 2b | **Fotos** `#fotos` | 3D-Fotowand: alle 13 Fotos auf einem Ring, Scroll dreht, Klick öffnet Großansicht | Fotostreifen + Lightbox mit Credits | ✅ gebaut |
 | – | **Impressum/Datenschutz** | – | Rechtstexte (Platzhalter markiert) | ⚠️ ausfüllen |
+
+**Navigation:** großer **MENÜ**-Knopf (immer sichtbar) öffnet die „Setlist“ mit bunten Kacheln inkl. nächstem Konzert. Am Desktop zusätzlich Schnelllinks oben und Abschnitts-Punkte rechts, am Handy eine **Leiste unten** (Termine · Musik · Fotos · Buchen).
+
+**Ton:** Ton-Knopf oben + „Mit Ton erleben“ im Intro. Im Intro läuft dann das **YouTube-Video „I loss mi ned vabiagn“ mit Ton** (wird beim Weiterscrollen leiser). Dazu Sound-Effekte: Mikro-Whoosh, Buchstaben-Pops, Kapitel-Swish, Riesenrad-Klick, Kassetten-Akkord, TV-Rauschen, Jukebox, Mic-Drop-Bass.
+
+**Header-Video:** YouTube-Video läuft stumm in Endlosschleife hinter dem Mikro (bunt eingefärbt), ID in `data.js` → `headerVideo`.
 
 **Durchgehend:** Plektrum-Cursor, magnetische Buttons, Buchstaben fliegen in Headlines ein, Laufbänder, die sich beim Scrollen verbiegen, Regenbogen-Fortschrittsbalken oben, Hintergrundfarbe wechselt fließend, optionaler Sound (Bass-Knall und Akkord), Easter Egg: **„leiwand“ tippen startet den Disco-Modus** 🪩
 
@@ -49,7 +56,11 @@
 - [ ] Optional: Starmania-Foto, NYC-/Schweden-Fotos für die Story-Karten (jetzt grafische Karten)
 - [ ] Optional: kurze Live-Videos → Video-Loops im Intro und in der Story
 
+- [ ] **Header-Video:** am besten eine eigene MP4-Datei (10–20 Sek. Live-Ausschnitt) statt YouTube → lädt schneller, kein YouTube-Logo, datenschutzfreundlicher
+- [ ] Optional: Hörproben (MP3, 20–30 Sek.) der Songs → spielen dann im Kassetten-Karussell
+
 **Technik (ich)**
+- [ ] YouTube nur nach Einwilligung laden (Cookie-Hinweis) – oder durch eigenes MP4 ersetzen
 - [ ] Schriften lokal einbinden (DSGVO, dann kein Google Fonts)
 - [ ] Three.js lokal statt CDN, Bilder zusätzlich als WebP
 - [ ] Newsletter an echten Dienst anbinden (z. B. Brevo/Mailchimp), Booking-Formular optional an Formular-Dienst statt Mailprogramm
