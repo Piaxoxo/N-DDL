@@ -22,21 +22,70 @@
 <body>
 <a class="skip" href="#story">Zum Inhalt springen</a>
 <div id="glow" aria-hidden="true"></div>
+  <div class="hero-video" id="heroVideo" aria-hidden="true">
+    <img src="assets/img/full/tanzen-lila.jpg" alt="" class="poster">
+    <div class="yt" id="ytBox"></div>
+    <div class="tint"></div>
+  </div>
+
 <canvas id="stage" aria-hidden="true"></canvas>
 <div class="progress" aria-hidden="true"></div>
 
 <header class="nav" id="nav">
   <a class="logo" href="#top" aria-label="N!DDL – nach oben">N<span>!</span>DDL</a>
-  <button class="burger" id="burger" aria-expanded="false" aria-controls="menu"><span></span><span></span><span class="sr">Menü</span></button>
-  <nav id="menu" aria-label="Hauptmenü">
-    <a href="#story" class="magnet">Story</a>
-    <a href="#konzerte" class="magnet">Konzerte</a>
+  <nav class="quick" aria-label="Schnellzugriff">
+    <a href="#konzerte" class="magnet">Termine</a>
     <a href="#musik" class="magnet">Musik</a>
-    <a href="#tv" class="magnet">TV</a>
-    <a href="#kontakt" class="magnet">Kontakt</a>
+    <a href="#fotos" class="magnet">Fotos</a>
     <a href="#buchen" class="btn small magnet">N!DDL buchen</a>
   </nav>
+  <div class="nav-right">
+    <button class="sound-btn" id="sound" type="button" aria-pressed="false"><span class="ico" aria-hidden="true">🔇</span><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="lbl">Ton aus</span></button>
+    <button class="menu-btn" id="burger" aria-expanded="false" aria-controls="menu"><span class="bars" aria-hidden="true"><span></span><span></span></span><span class="lbl">Menü</span></button>
+  </div>
 </header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menü" hidden>
+  <div class="menu-inner">
+    <p class="menu-title">Die Setlist – wohin willst du?</p>
+    <ul class="tiles">
+      <li><a href="#konzerte" style="--c:var(--pink)"><b>Termine &amp; Tickets</b><span id="menuNext">Nächstes Konzert …</span></a></li>
+      <li><a href="#buchen" style="--c:var(--sun)"><b>N!DDL buchen</b><span>Tina, Elvis, Gospel, Firmenfeier</span></a></li>
+      <li><a href="#musik" style="--c:var(--blue)"><b>Musik</b><span>Neue Single &amp; alle Songs</span></a></li>
+      <li><a href="#fotos" style="--c:var(--lime)"><b>Fotos</b><span>Bühne, Backstage, Schmäh</span></a></li>
+      <li><a href="#story" style="--c:var(--orange)"><b>Story</b><span>Von Starmania bis heute</span></a></li>
+      <li><a href="#tv" style="--c:var(--pink)"><b>TV</b><span>48er Tandler Lounge · W24</span></a></li>
+      <li><a href="#kontakt" style="--c:var(--cream)"><b>Kontakt</b><span>Mail, Autogramme, Newsletter</span></a></li>
+      <li><a href="#top" style="--c:var(--blue)"><b>Ganz nach oben</b><span>Nochmal des Mikro aufmachen</span></a></li>
+    </ul>
+    <p class="menu-social"><a href="https://www.instagram.com/niddl/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/niddlmusic/" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.youtube.com/@niddlmusic" target="_blank" rel="noopener">YouTube</a> · <a href="https://open.spotify.com/artist/3mLj9TJ70RiDv30LGxpDHh" target="_blank" rel="noopener">Spotify</a></p>
+  </div>
+</div>
+
+<nav class="dock" aria-label="Schnellnavigation unten">
+  <a href="#konzerte"><span aria-hidden="true">🎟️</span>Termine</a>
+  <a href="#musik"><span aria-hidden="true">🎵</span>Musik</a>
+  <a href="#fotos"><span aria-hidden="true">📸</span>Fotos</a>
+  <a href="#buchen"><span aria-hidden="true">⚡</span>Buchen</a>
+</nav>
+
+<nav class="dots" id="dots" aria-label="Abschnitte">
+  <a href="#top" data-s="top"><span>Start</span></a>
+  <a href="#story" data-s="story"><span>Story</span></a>
+  <a href="#fotos" data-s="fotos"><span>Fotos</span></a>
+  <a href="#konzerte" data-s="konzerte"><span>Termine</span></a>
+  <a href="#musik" data-s="musik"><span>Musik</span></a>
+  <a href="#tv" data-s="tv"><span>TV</span></a>
+  <a href="#buchen" data-s="buchen"><span>Buchen</span></a>
+  <a href="#kontakt" data-s="kontakt"><span>Kontakt</span></a>
+</nav>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto" hidden>
+  <button class="lb-close" id="lbClose" aria-label="Schließen">✕</button>
+  <button class="lb-nav prev" id="lbPrev" aria-label="Vorheriges Foto">‹</button>
+  <figure><img id="lbImg" alt=""><figcaption><b id="lbCap"></b><small id="lbCredit"></small></figcaption></figure>
+  <button class="lb-nav next" id="lbNext" aria-label="Nächstes Foto">›</button>
+</div>
 
 <main>
 
@@ -46,6 +95,10 @@
     <span class="eyebrow">Sängerin · Entertainerin · Wienerin</span>
     <h1 class="mega" data-split>DREH<br>AUF!</h1>
     <p class="lead">Scroll runter. Des Mikro geht auf, und raus kommt die lauteste Wienerin seit Starmania.</p>
+    <div class="cta">
+      <button class="btn magnet" id="soundHero" type="button">🔊 Mit Ton erleben</button>
+      <a class="btn alt magnet" href="#konzerte">Zu den Terminen</a>
+    </div>
   </div>
   <div class="panel right">
     <span class="scribble">Was steckt da drin? 👀</span>
@@ -98,6 +151,22 @@
   <span>KEIN HALBGAS <b>★</b></span><span>NIE <b>★</b></span><span>KEIN HALBGAS <b>★</b></span><span>NIE <b>★</b></span><span>KEIN HALBGAS <b>★</b></span><span>NIE <b>★</b></span>
   <span>KEIN HALBGAS <b>★</b></span><span>NIE <b>★</b></span><span>KEIN HALBGAS <b>★</b></span><span>NIE <b>★</b></span><span>KEIN HALBGAS <b>★</b></span><span>NIE <b>★</b></span>
 </div></div>
+
+<!-- ============ FOTOS: Fotowand ============ -->
+<section id="fotos" class="scene sticky-scene" data-scene="photos" style="--len:5" aria-label="Fotos">
+  <div class="sticky">
+    <div class="photo-head">
+      <span class="eyebrow">Fotos</span>
+      <h2 class="big" data-split>BÜHNE. BACKSTAGE.<br>SCHMÄH.</h2>
+      <p class="lead">Scroll dreht die Fotowand. Klick auf a Foto, dann wird's groß.</p>
+    </div>
+    <p class="photo-cap" id="photoCap" aria-live="polite">Des bin i!</p>
+    <div class="anchor wide" id="aPhotos" aria-hidden="true"></div>
+  </div>
+</section>
+<section class="container thumbs-wrap" aria-label="Alle Fotos">
+  <ul class="thumbs" id="thumbs"></ul>
+</section>
 
 <!-- ============ KONZERTE: Neon-Riesenrad ============ -->
 <section id="konzerte" class="scene sticky-scene" data-scene="wheel" style="--len:6" aria-label="Konzerte">
@@ -259,9 +328,6 @@
   </div>
 </footer>
 
-<div class="tools">
-  <button class="tool" id="sound" type="button" aria-pressed="false">🔇 Ton aus</button>
-</div>
 <div class="disco-msg" id="discoMsg" role="status">🪩 DISCO-MODUS! (Nochmal „leiwand“ tippen zum Beenden)</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>

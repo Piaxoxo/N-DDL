@@ -1,5 +1,22 @@
 /* Inhalte der Seite – hier pflegen. Datum im Format JJJJ-MM-TT. ticket: Link oder leer. */
 window.NIDDL_DATA = {
+  /* YouTube-Video im Header (ID aus der YouTube-Adresse ...watch?v=ID) */
+  headerVideo: "U9VcBpB2vCE",
+  photos: [
+    { file: "pinker-anzug", cap: "Des bin i!", credit: "" },
+    { file: "tanzen-lila", cap: "Kein Halbgas. Nie.", credit: "" },
+    { file: "ballkleid", cap: "Rock im Ballkleid", credit: "© SK Presseagentur / Christian Kaiser" },
+    { file: "lachen-blau", cap: "Lachen is Pflicht", credit: "© Chaluk – More than just Photography" },
+    { file: "mit-dennis", cap: "Mit Dennis Jale", credit: "© Dieserstürmi on Tour" },
+    { file: "weihnachten", cap: "Schmäh ohne Ende", credit: "" },
+    { file: "buehne-blau", cap: "Volle Stimm", credit: "" },
+    { file: "psst-strand", cap: "Psst … leiwand!", credit: "" },
+    { file: "backstage-schmollen", cap: "Backstage-Schmollmund", credit: "" },
+    { file: "singen-schwarz", cap: "Mit ganz viel Gfühl", credit: "" },
+    { file: "studio", cap: "Mich siehst du nie mehr", credit: "" },
+    { file: "backstage-nase", cap: "Stups!", credit: "" },
+    { file: "see", cap: "Durchatmen am See", credit: "" }
+  ],
   gigs: [
     { date: "2026-10-11", title: "N!DDL @ Der Lustige Hermann und seine Freunde", place: "Veranstaltungszentrum Z2000, Stockerau", time: "16:00 (Einlass 15:00)", type: "special", ticket: "https://www.niddl.com/" },
     { date: "2026-10-17", title: "Tina & Elvis by N!DDL und Dennis Jale", place: "Basement Music, Amberg", time: "18:00", type: "elvis", ticket: "https://www.niddl.com/" },

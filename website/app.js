@@ -12,6 +12,7 @@
   function seg(p, a, b) { return clamp((p - a) / (b - a), 0, 1); }
   function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
   function back(t) { var c = 1.9; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); }
+  function asset(p) { return (window.NIDDL_ASSETS && window.NIDDL_ASSETS[p]) || p; }
   var MONTHS = ["JÄN", "FEB", "MÄR", "APR", "MAI", "JUN", "JUL", "AUG", "SEP", "OKT", "NOV", "DEZ"];
 
   /* ================= UI ================= */
@@ -36,11 +37,14 @@
 
   // nav
   var nav = $("#nav"), burger = $("#burger"), menu = $("#menu");
-  burger.addEventListener("click", function () {
-    var o = burger.getAttribute("aria-expanded") !== "true";
-    burger.setAttribute("aria-expanded", o); menu.classList.toggle("open", o);
-  });
-  $$("#menu a").forEach(function (a) { a.addEventListener("click", function () { burger.setAttribute("aria-expanded", false); menu.classList.remove("open"); }); });
+  function setMenu(o) {
+    burger.setAttribute("aria-expanded", o); document.body.classList.toggle("menu-open", o);
+    if (o) { menu.hidden = false; requestAnimationFrame(function () { menu.classList.add("open"); }); var f = $(".tiles a", menu); f && f.focus({ preventScroll: true }); whoosh(0.5); }
+    else { menu.classList.remove("open"); setTimeout(function () { if (!menu.classList.contains("open")) menu.hidden = true; }, 250); }
+  }
+  burger.addEventListener("click", function () { setMenu(burger.getAttribute("aria-expanded") !== "true"); });
+  $$("#menu a").forEach(function (a) { a.addEventListener("click", function () { setMenu(false); }); });
+  addEventListener("keydown", function (e) { if (e.key === "Escape") { if (!menu.hidden) setMenu(false); if (!lb.hidden) closeLb(); } });
 
   // magnetic buttons
   if (!reduce && window.matchMedia("(pointer:fine)").matches) {
@@ -59,7 +63,7 @@
   chapters.forEach(function (li, i) { li.style.setProperty("--c", chColors[i % chColors.length]); dots.appendChild(document.createElement("i")); });
   var dotEls = $$("i", dots), curChapter = -1;
   function setChapter(i) {
-    if (i === curChapter) return; curChapter = i;
+    if (i === curChapter) return; if (curChapter >= 0) whoosh(0.45, true); curChapter = i;
     chapters.forEach(function (li, k) { li.classList.toggle("on", k === i); });
     dotEls.forEach(function (d, k) { d.classList.toggle("on", k === i); });
   }
@@ -70,6 +74,7 @@
   var gigs = DATA.gigs.filter(function (g) { return new Date(g.date + "T23:59:00") >= today; });
   if (!gigs.length) gigs = DATA.gigs.slice(-1);
   function fmtDate(d) { var x = new Date(d + "T12:00:00"); return { day: ("0" + x.getDate()).slice(-2), mon: MONTHS[x.getMonth()], full: ("0" + x.getDate()).slice(-2) + "." + ("0" + (x.getMonth() + 1)).slice(-2) + "." + x.getFullYear() }; }
+  (function () { var g = gigs[0], d = fmtDate(g.date); $("#menuNext").textContent = "Als Nächstes: " + d.full + " · " + g.title.replace(/^N!DDL\s*[–@-]?\s*/, "") + " · " + g.place; })();
   var gigList = $("#gigList");
   function renderGigs(f) {
     gigList.innerHTML = gigs.filter(function (g) { return f === "all" || g.type === f; }).map(function (g) {
@@ -87,7 +92,7 @@
   });
   var gigCard = $("#gigCard"), curGig = -1;
   function setGig(i) {
-    if (i === curGig) return; curGig = i;
+    if (i === curGig) return; if (curGig >= 0) { tick(1); pop(1.5); } curGig = i;
     var g = gigs[i], d = fmtDate(g.date), t = DATA.types[g.type];
     $("#gigDay").textContent = d.day; $("#gigMonth").textContent = d.mon + " " + g.date.slice(2, 4);
     $("#gigTag").textContent = t.label; $("#gigTitle").textContent = g.title;
@@ -106,11 +111,30 @@
   }).join("");
   var curTape = -1;
   function setTape(i) {
-    if (i === curTape) return; curTape = i;
+    if (i === curTape) return; if (curTape >= 0) { tick(0.8); chord(196 * Math.pow(2, (i % 7) / 12)); } curTape = i;
     $("#tapeTitle").textContent = DATA.releases[i].title; $("#tapeSub").textContent = DATA.releases[i].sub;
     $(".now-playing").style.setProperty("--tc", tapeCols[i % 5]);
   }
   setTape(0);
+
+  // photos: thumbnails + lightbox
+  var PH = DATA.photos, lb = $("#lightbox"), lbIdx = 0, lastFocus = null;
+  var phCols = ["var(--pink)", "var(--blue)", "var(--sun)", "var(--lime)", "var(--orange)"];
+  $("#thumbs").innerHTML = PH.map(function (p, i) {
+    return '<li><button type="button" data-i="' + i + '" style="--c:' + phCols[i % 5] + ';--r:' + (((i * 37) % 7) - 3) + 'deg" aria-label="Foto: ' + p.cap + '"><img src="' + asset("assets/img/" + p.file + ".jpg") + '" alt="' + p.cap + '" loading="lazy" width="300" height="300"></button></li>';
+  }).join("");
+  $$("#thumbs button").forEach(function (b) { b.addEventListener("click", function () { openLb(+b.dataset.i); }); });
+  function showLb(i) {
+    lbIdx = (i + PH.length) % PH.length; var p = PH[lbIdx];
+    $("#lbImg").src = asset("assets/img/full/" + p.file + ".jpg"); $("#lbImg").alt = p.cap; $("#lbCap").textContent = p.cap; $("#lbCredit").textContent = p.credit || "";
+  }
+  function openLb(i) { lastFocus = document.activeElement; showLb(i); lb.hidden = false; document.body.classList.add("menu-open"); $("#lbClose").focus(); pop(1.4); whoosh(0.4, true); }
+  function closeLb() { lb.hidden = true; document.body.classList.remove("menu-open"); lastFocus && lastFocus.focus && lastFocus.focus({ preventScroll: true }); }
+  $("#lbClose").addEventListener("click", closeLb);
+  $("#lbPrev").addEventListener("click", function () { showLb(lbIdx - 1); tick(); });
+  $("#lbNext").addEventListener("click", function () { showLb(lbIdx + 1); tick(); });
+  lb.addEventListener("click", function (e) { if (e.target === lb) closeLb(); });
+  addEventListener("keydown", function (e) { if (lb.hidden) return; if (e.key === "ArrowLeft") showLb(lbIdx - 1); if (e.key === "ArrowRight") showLb(lbIdx + 1); });
 
   // booking formats + forms
   var fmtIdx = 0, fmtChanged = 0;
@@ -137,28 +161,78 @@
   });
 
   // sound
-  var soundOn = false, actx = null;
-  function ac() { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { } return actx; }
-  $("#sound").addEventListener("click", function () {
-    soundOn = !soundOn; this.setAttribute("aria-pressed", soundOn); this.textContent = soundOn ? "🔊 Ton an" : "🔇 Ton aus";
-    if (soundOn && ac()) actx.resume();
-  });
+  var soundOn = false, actx = null, master = null, noiseBuf = null;
+  function ac() {
+    try {
+      if (!actx) { actx = new (window.AudioContext || window.webkitAudioContext)(); master = actx.createGain(); master.gain.value = 0.8; master.connect(actx.destination);
+        noiseBuf = actx.createBuffer(1, actx.sampleRate, actx.sampleRate); var d = noiseBuf.getChannelData(0); for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; }
+    } catch (e) { } return actx;
+  }
+  var soundBtn = $("#sound"), heroBtn = $("#soundHero");
+  function setSound(on) {
+    soundOn = on; soundBtn.setAttribute("aria-pressed", on); $(".lbl", soundBtn).textContent = on ? "Ton an" : "Ton aus";
+    heroBtn.textContent = on ? "🔇 Ton aus" : "🔊 Mit Ton erleben";
+    if (on && ac()) { actx.resume(); pop(1.2); }
+    yt(on ? "unMute" : "mute"); if (on) yt("playVideo");
+  }
+  soundBtn.addEventListener("click", function () { setSound(!soundOn); });
+  heroBtn.addEventListener("click", function () { setSound(!soundOn); });
+  function out() { return master || actx.destination; }
+  function env(g, t, a, peak, dec) { g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + a); g.gain.exponentialRampToValueAtTime(0.0001, t + a + dec); }
+  function whoosh(len, up) {
+    if (!soundOn || !ac()) return; len = len || 0.6;
+    var t = actx.currentTime, src = actx.createBufferSource(), f = actx.createBiquadFilter(), g = actx.createGain();
+    src.buffer = noiseBuf; f.type = "bandpass"; f.Q.value = 1.2;
+    f.frequency.setValueAtTime(up ? 300 : 2400, t); f.frequency.exponentialRampToValueAtTime(up ? 3200 : 260, t + len);
+    env(g, t, len * 0.4, 0.35, len * 0.6); src.connect(f).connect(g).connect(out()); src.start(t); src.stop(t + len + 0.05);
+  }
+  function pop(pitch) {
+    if (!soundOn || !ac()) return; pitch = pitch || 1;
+    var t = actx.currentTime, o = actx.createOscillator(), g = actx.createGain(); o.type = "triangle";
+    o.frequency.setValueAtTime(420 * pitch, t); o.frequency.exponentialRampToValueAtTime(900 * pitch, t + 0.08);
+    env(g, t, 0.005, 0.25, 0.15); o.connect(g).connect(out()); o.start(t); o.stop(t + 0.2);
+  }
+  function tick(pitch) {
+    if (!soundOn || !ac()) return;
+    var t = actx.currentTime, o = actx.createOscillator(), g = actx.createGain(); o.type = "square"; o.frequency.value = 1400 * (pitch || 1);
+    env(g, t, 0.002, 0.07, 0.05); o.connect(g).connect(out()); o.start(t); o.stop(t + 0.08);
+  }
+  function chord(root) {
+    if (!soundOn || !ac()) return; var t = actx.currentTime;
+    [1, 1.26, 1.5, 2].forEach(function (m, i) { var o = actx.createOscillator(), g = actx.createGain(), f = actx.createBiquadFilter(); o.type = "sawtooth"; o.frequency.value = root * m; f.type = "lowpass"; f.frequency.value = 1800;
+      env(g, t + i * 0.03, 0.02, 0.05, 0.9); o.connect(f).connect(g).connect(out()); o.start(t + i * 0.03); o.stop(t + 1.1); });
+  }
+  var staticSrc = null, staticGain = null;
+  function staticLevel(v) {
+    if (!soundOn || !ac()) { if (staticGain) staticGain.gain.value = 0; return; }
+    if (!staticSrc) { staticSrc = actx.createBufferSource(); staticSrc.buffer = noiseBuf; staticSrc.loop = true; var f = actx.createBiquadFilter(); f.type = "highpass"; f.frequency.value = 1500; staticGain = actx.createGain(); staticGain.gain.value = 0; staticSrc.connect(f).connect(staticGain).connect(out()); staticSrc.start(); }
+    staticGain.gain.setTargetAtTime(v * 0.12, actx.currentTime, 0.05);
+  }
+
+  /* YouTube-Header (stumm, Endlosschleife; Ton über den Ton-Knopf) */
+  var ytFrame = null, ytVol = -1;
+  function yt(func, args) { if (ytFrame && ytFrame.contentWindow) ytFrame.contentWindow.postMessage(JSON.stringify({ event: "command", func: func, args: args || [] }), "*"); }
+  if (DATA.headerVideo) {
+    var vid = DATA.headerVideo;
+    ytFrame = document.createElement("iframe");
+    ytFrame.src = "https://www.youtube-nocookie.com/embed/" + vid + "?autoplay=1&mute=1&loop=1&playlist=" + vid + "&controls=0&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&disablekb=1&enablejsapi=1";
+    ytFrame.allow = "autoplay; encrypted-media"; ytFrame.title = "N!DDL – Musikvideo"; ytFrame.tabIndex = -1;
+    ytFrame.addEventListener("load", function () { yt("playVideo"); if (soundOn) yt("unMute"); });
+    $("#ytBox").appendChild(ytFrame);
+  }
+  var heroVideo = $("#heroVideo");
   function boom() {
     if (!soundOn || !ac()) return;
     var t = actx.currentTime, o = actx.createOscillator(), g = actx.createGain();
     o.frequency.setValueAtTime(140, t); o.frequency.exponentialRampToValueAtTime(40, t + 0.35);
-    g.gain.setValueAtTime(0.9, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.5); o.connect(g).connect(actx.destination); o.start(t); o.stop(t + 0.5);
+    g.gain.setValueAtTime(0.9, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.5); o.connect(g).connect(out()); o.start(t); o.stop(t + 0.5);
     [329.6, 415.3, 493.9, 659.3].forEach(function (f, i) {
       var oo = actx.createOscillator(), gg = actx.createGain(); oo.type = "sawtooth"; oo.frequency.value = f;
       gg.gain.setValueAtTime(0, t + 0.04 * i); gg.gain.linearRampToValueAtTime(0.05, t + 0.04 * i + 0.02); gg.gain.exponentialRampToValueAtTime(0.001, t + 1.2);
-      oo.connect(gg).connect(actx.destination); oo.start(t + 0.04 * i); oo.stop(t + 1.3);
+      oo.connect(gg).connect(out()); oo.start(t + 0.04 * i); oo.stop(t + 1.3);
     });
   }
-  function click() {
-    if (!soundOn || !ac()) return;
-    var t = actx.currentTime, o = actx.createOscillator(), g = actx.createGain(); o.type = "square"; o.frequency.value = 880;
-    g.gain.setValueAtTime(0.06, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.08); o.connect(g).connect(actx.destination); o.start(t); o.stop(t + 0.1);
-  }
+  function click() { tick(0.6); pop(0.8); }
 
   // easter egg: type "leiwand"
   var keys = "", disco = false;
@@ -171,9 +245,10 @@
   /* ================= 3D ================= */
   var burst = null;
   var sections = {
-    hero: $("#top"), story: $("#story"), wheel: $("#konzerte"), tapes: $("#musik"), tv: $("#tv"), juke: $("#buchen"), finale: $("#kontakt")
+    hero: $("#top"), story: $("#story"), photos: $("#fotos"), wheel: $("#konzerte"), tapes: $("#musik"), tv: $("#tv"), juke: $("#buchen"), finale: $("#kontakt")
   };
-  var glowEl = $("#glow"), marquees = $$(".marquee"), lastY = scrollY, vel = 0;
+  var glowEl = $("#glow"), marquees = $$(".marquee"), lastY = scrollY, vel = 0, lastSec = "";
+  var dotLinks = $$("#dots a").concat($$(".dock a"));
   var hues = [[255, 46, 136], [46, 107, 255], [255, 212, 0], [157, 255, 0], [255, 106, 0], [255, 46, 136]];
   function chrome2d() {
     var max = doc.scrollHeight - innerHeight, gp = max > 0 ? clamp(scrollY / max, 0, 1) : 0;
@@ -182,6 +257,13 @@
     var sk = clamp(-vel * 0.25, -12, 12).toFixed(2) + "deg";
     marquees.forEach(function (m) { m.style.setProperty("--skew", sk); });
     nav.classList.toggle("solid", scrollY > 40);
+    var mid = innerHeight * 0.45, curSec = "top";
+    $$("main > section[id]").forEach(function (el) { if (el.getBoundingClientRect().top <= mid) curSec = el.id; });
+    if (curSec !== lastSec) { lastSec = curSec; dotLinks.forEach(function (a) { var on = a.getAttribute("href") === "#" + curSec || (curSec === "top" && a.dataset.s === "top"); a.classList.toggle("on", on); }); }
+    var hs = secState(sections.hero), hp = hs.p, hv = clamp(hs.r.bottom / innerHeight, 0, 1);
+    heroVideo.style.setProperty("--hv", ((1 - seg(hp, 0.04, 0.42) * 0.8) * hv).toFixed(3));
+    var vol = soundOn ? Math.round(clamp(hv * 1.2 - 0.1, 0, 1) * 100) : 0;
+    if (vol !== ytVol) { ytVol = vol; yt("setVolume", [vol]); if (soundOn) yt(vol > 0 ? "unMute" : "mute"); }
     var hi = gp * (hues.length - 1), a = hues[Math.floor(hi)], b = hues[Math.min(hues.length - 1, Math.floor(hi) + 1)], f = hi - Math.floor(hi);
     var cc = a.map(function (v, i) { return Math.round(v + (b[i] - v) * f); }).join(",");
     glowEl.style.background = "radial-gradient(60% 50% at 60% 42%, rgba(" + cc + ",0.30), rgba(22,10,36,0) 70%), radial-gradient(45% 45% at 10% 95%, rgba(46,107,255,0.16), rgba(22,10,36,0) 70%)";
@@ -213,7 +295,7 @@
   var scene = new THREE.Scene();
   var camera = new THREE.PerspectiveCamera(38, 1, 0.1, 120);
   var loader = new THREE.TextureLoader();
-  function tex(src) { var t = loader.load(src); t.encoding = THREE.sRGBEncoding; t.anisotropy = 4; return t; }
+  function tex(src) { var t = loader.load(asset(src)); t.encoding = THREE.sRGBEncoding; t.anisotropy = 4; return t; }
 
   (function env() {
     var e = new THREE.Scene(), g = new THREE.PlaneGeometry(6, 6), cols = PAL.concat([0xffffff]);
@@ -366,18 +448,19 @@
   var pols = shots.map(function (sh, i) { var g = makePolaroid(tex(sh.src), sh.cap, i); g.userData.sh = sh; g.scale.setScalar(0.001); hero.add(g); return g; });
   var heroBursted = false, capWorld = new THREE.Vector3();
   var fan = [[0, 0, 0, -0.06], [-1.55, 0.35, -0.7, 0.22], [1.55, 0.35, -0.7, -0.2], [-0.9, -0.9, -1.1, -0.3], [0.95, -0.9, -1.1, 0.28]];
-  var heroCam = { z: 10, y: 0 };
+  var heroCam = { z: 10, y: 0 }, sfx = {};
   function updateHero(st, t, dt, aspect) {
     var p = st.p, narrow = aspect < 0.8;
     var leave = 1 - clamp(st.r.bottom / innerHeight, 0, 1);
     hero.visible = st.vis > 0.001;
     hero.position.y = leave * view.h * 1.1;
     var open = ease(seg(p, 0.07, 0.30)), away = ease(seg(p, 0.66, 0.86)), sway = reduce ? 0 : Math.sin(t * 0.5) * 0.35;
-    mic.g.position.y = 0.9 - open * 0.4 - away * 8.5 - (narrow ? 1.3 * (1 - open) : 0);
+    mic.g.position.y = 0.9 - open * 0.4 - away * 8.5 - (narrow ? 2.4 * (1 - open) : 0);
     mic.g.rotation.set(0.12 + pointer.y * 0.12, (sway + pointer.x * 0.4) * (1 - open * 0.7), 0);
     mic.lidPivot.rotation.x = -open * 1.75; mic.lid.position.y = open * 0.25; mic.cup.position.y = -open * 0.15;
     mic.ring.position.y = -0.98 - open * 0.9; mic.body.position.y = -2.35 - open * 1.8; mic.body.rotation.z = open * 0.12;
     mic.screws.forEach(function (s, i) { var a = s.userData.a, r = 0.7 + open * (1.6 + (i % 3) * 0.4); s.position.set(Math.cos(a) * r, -0.98 - open * 0.9 + Math.sin(i * 2.1) * open * 0.6, Math.sin(a) * r); s.rotation.set(open * 4 + i, open * 6 + i, 0); });
+    if (open > 0.5 && !sfx.open) { sfx.open = true; whoosh(0.9, true); } if (open < 0.3) sfx.open = false;
     var live = seg(p, 0.12, 0.62) * (1 - away);
     mic.capsule.position.y = open * 0.25;
     mic.diaMat.emissiveIntensity = 0.2 + live * 2.2 + (reduce ? 0 : Math.sin(t * 28) * 0.25 * live);
@@ -387,6 +470,7 @@
     var ly = narrow ? 2.7 : 2.05, rowScale = Math.min(1, view.w * 0.86 / rowW);
     letters.forEach(function (m, i) {
       var u = m.userData, e = seg(p, 0.27 + i * 0.045, 0.47 + i * 0.045), k = ease(e);
+      if (e > 0.5 && !u.popped) { u.popped = true; pop(1 + i * 0.18); } if (e < 0.2) u.popped = false;
       var tx = u.tx * rowScale, ty = ly + Math.sin(t * 1.6 + i) * (reduce ? 0 : 0.06), tz = 0.6;
       m.position.set(capWorld.x + (tx - capWorld.x) * k, capWorld.y + (ty - capWorld.y) * k + Math.sin(Math.PI * k) * 2.2, capWorld.z + (tz - capWorld.z) * k + Math.sin(Math.PI * k) * 2);
       u.jump = Math.max(0, u.jump - dt * 1.6); m.position.y += Math.sin(u.jump * Math.PI) * 0.9;
@@ -396,6 +480,7 @@
     var cx = narrow ? 0 : 2.7, cy = narrow ? 0.55 : -0.1;
     pols.forEach(function (g, i) {
       var sh = g.userData.sh, e = seg(p, sh.d, sh.d + 0.16), k = ease(e);
+      if (e > 0.4 && !g.userData.sw) { g.userData.sw = true; whoosh(0.35); } if (e < 0.1) g.userData.sw = false;
       var tx = narrow ? sh.x * 0.42 : sh.x, ty = narrow ? (i === 0 ? -0.1 : sh.y * 1.25 + (i < 3 ? 2.3 : -0.9)) : sh.y, tz = narrow && i > 0 ? sh.z - 1.5 : sh.z, tr = sh.r;
       var sc = narrow ? (i === 0 ? 0.95 : 0.55) : sh.s, f = fan[i], fs = narrow ? 0.62 : 0.78;
       tx += (cx + f[0] * fs - tx) * away; ty += (cy + f[1] * fs - ty) * away; tz += (1.2 + f[2] - tz) * away; tr += (f[3] - tr) * away;
@@ -454,6 +539,33 @@
       r.position.set(0, 0, -z + 3); r.rotation.z = t * 0.2 + i; r.material.opacity = 0.55 * clamp(1 - z / 40, 0, 1) * clamp((3 - (-z + 3)) / 3 + 0.2, 0, 1);
       r.scale.setScalar(1 + Math.sin(t * 2 + i) * 0.03);
     });
+  }
+
+  /* ================= SCENE 2b: FOTOWAND ================= */
+  var photoG = new THREE.Group(); scene.add(photoG);
+  var ringG = new THREE.Group(); photoG.add(ringG);
+  var NP = DATA.photos.length, PR = 5.4;
+  var photoCards = DATA.photos.map(function (p, i) {
+    var g = makePolaroid(tex("assets/img/" + p.file + ".jpg"), p.cap, i); g.userData.i = i;
+    g.traverse(function (o) { o.userData.photo = i; }); ringG.add(g); return g;
+  });
+  var photoGlow = glowSprite("rgba(255,212,0,0.6)", 5); photoGlow.position.set(0, 0, -1); photoG.add(photoGlow);
+  var curPhoto = -1, photoDrag = 0, photoDragV = 0;
+  function updatePhotos(st, t, dt, aspect) {
+    photoG.visible = st.vis > 0.001; if (!photoG.visible) return;
+    var b = anchorBox($("#aPhotos")), s = fit(b, aspect < 0.8 ? 5.2 : 9, 4.6);
+    photoG.position.set(b.x, b.y, 0); photoG.scale.setScalar(s);
+    photoDrag += photoDragV; photoDragV *= 0.9;
+    var cur = st.p * (NP - 1) + photoDrag, step = Math.PI * 2 / NP;
+    ringG.position.z = -PR; ringG.rotation.y = -cur * step + pointer.x * 0.15; ringG.rotation.x = pointer.y * 0.06;
+    var front = ((Math.round(cur) % NP) + NP) % NP;
+    if (front !== curPhoto) { if (curPhoto >= 0) tick(1.3); curPhoto = front; $("#photoCap").textContent = DATA.photos[front].cap + (DATA.photos[front].credit ? "" : ""); }
+    photoCards.forEach(function (g, i) {
+      var a = i * step; g.position.set(Math.sin(a) * PR, Math.sin(t * 0.9 + i) * 0.12 + (i % 2 ? 0.25 : -0.25), Math.cos(a) * PR); g.rotation.set(0, a, (i % 2 ? 1 : -1) * 0.05);
+      var d = Math.abs((((i - cur) % NP) + NP + NP / 2) % NP - NP / 2), f = clamp(1 - d, 0, 1);
+      g.scale.setScalar(1 + f * 0.35);
+    });
+    photoGlow.material.opacity = 0.5;
   }
 
   /* ================= SCENE 3: KONZERTE – Neon-Riesenrad ================= */
@@ -586,13 +698,14 @@
   }
   var tvFrame = 0;
   function updateTv(st, t, dt, aspect) {
-    tvG.visible = st.vis > 0.001; if (!tvG.visible) return;
+    tvG.visible = st.vis > 0.001; if (!tvG.visible) { staticLevel(0); return; }
     var b = anchorBox($("#aTv")), s = fit(b, 4, 4.4);
     tvG.position.set(b.x, b.y, 0); tvG.scale.setScalar(s);
     var inn = clamp(st.vis * 1.6 - 0.2, 0, 1);
     tvG.rotation.set(0.1 + pointer.y * 0.1, -0.5 + inn * 0.25 + pointer.x * 0.3, (1 - inn) * 0.2);
     tvOn += ((inn > 0.75 ? 1 : 0) - tvOn) * Math.min(1, dt * 2);
     if ((tvFrame++ % 2) === 0) drawScreen(t, tvOn);
+    staticLevel((1 - tvOn) * clamp(st.vis * 2, 0, 1));
   }
 
   /* ================= SCENE 6: JUKEBOX ================= */
@@ -670,10 +783,12 @@
   var pointer = new THREE.Vector2(), pTarget = new THREE.Vector2(), ray = new THREE.Raycaster();
   addEventListener("pointermove", function (e) { pTarget.set(e.clientX / innerWidth * 2 - 1, -(e.clientY / innerHeight) * 2 + 1); }, { passive: true });
   addEventListener("pointerdown", function (e) {
-    if (e.target.closest("a,button,input,textarea,label,form,.gig-card,.chapters")) return;
+    if (e.target.closest("a,button,input,textarea,label,form,.gig-card,.chapters,.menu,.lightbox,.dock")) return;
     var v = new THREE.Vector2(e.clientX / innerWidth * 2 - 1, -(e.clientY / innerHeight) * 2 + 1); ray.setFromCamera(v, camera);
     var hit = hero.visible && ray.intersectObjects(letters, false)[0];
     if (hit) { hit.object.userData.jump = 1; if (hit.object.userData.ch === "!") { var o = hit.object.position.clone(); hero.localToWorld(o); burst(o); } click(); return; }
+    var ph = photoG.visible && ray.intersectObjects(photoCards, true)[0];
+    if (ph) { openLb(ph.object.userData.photo); return; }
     var bh = jukeG.visible && ray.intersectObjects(jButtons, false)[0];
     if (bh) { var i = jButtons.indexOf(bh.object); $$("#formats .fmt")[i].click(); }
   });
@@ -695,6 +810,7 @@
     var sh = smoothState("hero", secState(sections.hero), dt);
     updateHero(sh, t, dt, aspect);
     updateStory(smoothState("story", secState(sections.story), dt), t, dt, aspect);
+    updatePhotos(smoothState("photos", secState(sections.photos), dt), t, dt, aspect);
     updateWheel(smoothState("wheel", secState(sections.wheel), dt), t, dt, aspect);
     updateTapes(smoothState("tapes", secState(sections.tapes), dt), t, dt, aspect);
     updateTv(secState(sections.tv), t, dt, aspect);
