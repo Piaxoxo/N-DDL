@@ -106,3 +106,46 @@
 2. Kurze Live- oder Handyvideos
 3. Hörproben der Songs (20–30 Sek.)
 4. Persönliche Kleinigkeiten zum Einscannen: alte Konzertkarten, Setlists, Fotos von Starmania, Sticker. Das kommt alles ins Scrapbook!
+
+---
+
+# 🏆 3D- & Scroll-Effekte (Award-Niveau)
+
+**Roter Faden: Die Seite beginnt mit einem Mikrofon, das sich öffnet, und endet mit einem Mic-Drop.**
+
+## Die Scroll-Reise
+| # | Moment | Was passiert beim Scrollen |
+|---|---|---|
+| 0 | **Preloader: VU-Meter** | Ein bunter Pegel-Zeiger zählt 0→100 %, knallt in den roten Bereich, dann eine Konfetti-Explosion und die Seite ist da |
+| 1 | **Das Mikrofon öffnet sich** (Signature-Effekt) | Riesiges 3D-Mikro in Candy-Chrom dreht sich. Beim Scrollen **zerlegt es sich in Einzelteile** (Explosionsansicht): Gitterkorb klappt auf, Kapsel, Ringe und Schrauben schweben auseinander. Aus dem Inneren platzen die **Ballonbuchstaben N!DDL** heraus |
+| 2 | **Flug ins Mikro** | Die Kamera fliegt **durch das Mikrofongitter** in einen **Tunnel aus bunten Schallwellen-Ringen**, das ist der Übergang in die Story |
+| 3 | **Das Kassettenband** | Eine Kassette spult sich ab: Das **Tonband wird zur Zeitleiste**, die sich durch die ganze Story-Seite schlängelt und Kapitel für Kapitel verbindet |
+| 4 | **Polaroid-Regen** | Fotos aus jedem Lebensabschnitt **fallen mit Physik** herunter, stapeln sich und lassen sich mit der Maus herumwerfen |
+| 5 | **Sticker abziehen** | Sticker auf den Kapiteln **rollen sich beim Drüberfahren in 3D ab** und zeigen darunter ein Foto oder einen Fun Fact |
+| 6 | **Scroll-Video** | Ein Niddl-Video (Drehung, Sprung, Lachen) läuft **Bild für Bild mit dem Scrollen** vor und zurück, wie bei Apple-Produktseiten |
+| 7 | **Riesenrad** | Die Sektion bleibt stehen, Scrollen **dreht das Neon-Riesenrad**, jede Gondel ist ein Konzert |
+| 8 | **Ticket abreißen** | Ein Klick auf eine Gondel lässt ein **3D-Ticket herausfallen**, das man entlang der Perforation abreißt und damit zum Ticketkauf kommt |
+| 9 | **Vinyl-Scratch** | In der Musik-Sektion **dreht sich die Platte mit dem Scrollen**. Scrollt man zurück, „scratcht“ sie (mit Ton, falls an) |
+| 10 | **Bass-Lautsprecher** | Die Membran **wölbt sich je nach Scroll-Tempo**. Bei jedem Sektionswechsel geht eine **Druckwelle** durchs Bild und verzerrt es kurz |
+| 11 | **Verstärker „bis 11“** | Ein Amp-Drehknopf, den man aufdreht: Je weiter, desto **bunter, lauter und wilder wird die ganze Seite** (mehr Farbe, mehr Partikel, Ton an). Bei 11 gibt's Disco-Modus |
+| 12 | **Jeansjacke** | Die Jacke dreht sich mit dem Scroll, die Pins blitzen nacheinander auf |
+| 13 | **MIC DROP** (Finale) | Ganz unten **fällt das Mikro vom Himmel**, prallt auf, Kamerawackler, **BOOM**, Konfetti und „DANKE! ZUGABE?“ |
+
+## Durchgehende Effekte
+- **Gitarrensaiten als Trennlinien:** Zwischen den Sektionen sind Saiten gespannt. Fährt man mit der Maus drüber, **schwingen sie** (und klingen, falls Ton an)
+- **Flüssiger Farbverlauf (Shader)** im Hintergrund, der beim Scrollen von Pink → Blau → Gelb → Grün → Orange morpht
+- **Kinetische Typo:** Headlines zerfallen in Einzelbuchstaben und fliegen rein. Die Schrift wird **dicker, je schneller man scrollt**
+- **Laufband** „LAUT • BUNT • LEIWAND • TIME TO SMILE“, das sich je nach Scroll-Tempo **verbiegt und neigt**
+- **Foto-Hover:** RGB-Split / Flüssig-Verzerrung, wie ein glitchendes Musikvideo
+- **Magnetische Buttons**, die sich zum Cursor ziehen
+- **Plektrum-Cursor** mit bunter Funkenspur
+- **Seitenwechsel:** ein bunter Farbspritzer wischt über den Bildschirm
+- **Easter Egg:** Wer auf der Tastatur **„leiwand“** tippt, startet den Disco-Modus (Discokugel, Lichtpunkte, alles tanzt)
+
+## Technik dahinter
+- **React Three Fiber + Three.js** für alle 3D-Objekte, **eigene Shader** für Farbverlauf, Druckwelle und Glitch
+- **GSAP ScrollTrigger** (scrub/pin) + **Lenis** für butterweiches Scrollen
+- **Theatre.js** für die Kamerafahrten (wie ein Filmschnitt choreografiert)
+- **Rapier** für Physik (Ballonbuchstaben, Polaroids, Mic-Drop)
+- **Blender** für Mikro, Riesenrad, Kassette, Amp, Jacke (als komprimierte GLB-Dateien)
+- **Handy:** gleiche Story mit vereinfachten Effekten. **„Reduzierte Bewegung“** wird respektiert. **Ton** nur auf Wunsch
