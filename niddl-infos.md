@@ -101,6 +101,15 @@ Volltext: `biografie.md` (#leiwand, „Es war einmal – NIDDL Time(2smile-)line
 - Post: **Königsegggasse 5/7, 1060 Wien** (Autogrammwünsche bitte mit frankiertem Rückkuvert)
 - Newsletter-Anmeldung auf der Website
 
+## Socials
+- Instagram: https://www.instagram.com/niddl/ (@niddl, ca. 8.100 Follower)
+- Facebook: https://www.facebook.com/niddlmusic/ (ca. 18.100 Follower)
+- YouTube: https://www.youtube.com/@niddlmusic
+- Spotify: https://open.spotify.com/artist/3mLj9TJ70RiDv30LGxpDHh
+- Linktree: https://linktr.ee/niddl
+- Podcast-Interview: https://leuteimfokus.letscast.fm/episode/anita-niddl-stelzl
+- TikTok: nicht gefunden
+
 ## Partner („Vielen Dank an“)
 Alex List Fotografie · Dennis Jale · Linda's Fashion & Style · NÖZSV (NÖ Zivilschutzverband) · 48er (MA48 / 48er Tandler) · Geus.TV · m2k Werbeagentur
 
