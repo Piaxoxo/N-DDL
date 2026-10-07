@@ -1,6 +1,8 @@
 /* Inhalte der Seite – hier pflegen. Datum im Format JJJJ-MM-TT.
    ticket: Link direkt zum Ticketverkauf (oder leer = „Infos folgen“), ticketLabel: optionaler Button-Text, soldout: true = „Ausverkauft“. */
 window.NIDDL_DATA = {
+  /* Website-Credit (Footer, Impressum, Metadaten) */
+  credit: { name: "Bandita", url: "" },
   /* Soundtrack: leer = der eingebaute N!DDL-Rock-Soundtrack spielt.
      Eigene MP3 verwenden: Datei nach assets/audio/ legen und z. B. "assets/audio/i-loss-mi-ned-vabiagn.mp3" eintragen. */
   soundtrack: "assets/audio/i-loss-mi-ned-vabiagn.mp3",

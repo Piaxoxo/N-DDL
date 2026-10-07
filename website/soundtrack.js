@@ -20,6 +20,8 @@
     kontakt:  { d: 0.7, b: 0.7, g: 0.5, p: 0.8, a: 0.5, f: 9000 },
     outro:    { d: 0.0, b: 0.4, g: 0.0, p: 1.0, a: 0.4, f: 3000 }
   };
+  var analyser = null, fbuf = null;
+  function tapAnalyser(c, node) { if (!analyser) { analyser = c.createAnalyser(); analyser.fftSize = 1024; analyser.smoothingTimeConstant = 0.6; fbuf = new Uint8Array(analyser.frequencyBinCount); } node.connect(analyser); }
   var ctx, out, bus, filt, layers = {}, noise, dist, timer = null, step = 0, nextT = 0, cur = "intro", playing = false, audioEl = null, mp3Gain = null;
 
   function curve(k) { var n = 1024, c = new Float32Array(n); for (var i = 0; i < n; i++) { var x = i * 2 / n - 1; c[i] = (1 + k) * x / (1 + k * Math.abs(x)); } return c; }
@@ -30,7 +32,7 @@
     ctx = c;
     var comp = ctx.createDynamicsCompressor(); comp.threshold.value = -16; comp.ratio.value = 4;
     out = g(0); filt = ctx.createBiquadFilter(); filt.type = "lowpass"; filt.frequency.value = 18000; filt.Q.value = 0.7;
-    bus = g(1.0); bus.connect(filt).connect(comp).connect(out).connect(dest);
+    bus = g(1.0); bus.connect(filt).connect(comp).connect(out).connect(dest); tapAnalyser(ctx, out);
     ["d", "b", "g", "p", "a"].forEach(function (k) { layers[k] = g(0); layers[k].connect(bus); });
     noise = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate); var nd = noise.getChannelData(0); for (var i = 0; i < nd.length; i++) nd[i] = Math.random() * 2 - 1;
     dist = ctx.createWaveShaper(); dist.curve = curve(60); dist.oversample = "2x";
@@ -71,7 +73,7 @@
   window.NiddlSoundtrack = {
     start: function (c, dest, mp3) {
       if (mp3) {
-        if (!audioEl) { audioEl = new Audio(mp3); audioEl.loop = true; audioEl.crossOrigin = "anonymous"; var src = c.createMediaElementSource(audioEl); mp3Gain = c.createGain(); mp3Gain.gain.value = 0.9; src.connect(mp3Gain).connect(dest); ctx = c; }
+        if (!audioEl) { audioEl = new Audio(mp3); audioEl.loop = true; audioEl.crossOrigin = "anonymous"; var src = c.createMediaElementSource(audioEl); mp3Gain = c.createGain(); mp3Gain.gain.value = 0.9; src.connect(mp3Gain).connect(dest); ctx = c; tapAnalyser(c, mp3Gain); }
         audioEl.play().catch(function () { }); playing = true; return;
       }
       if (!ctx) setup(c, dest);
@@ -96,6 +98,13 @@
     },
     crash: function () { if (playing && ctx && !audioEl) crash(); },
     get playing() { return playing; },
+    /* Pegel für die Visuals: bass/mid/high 0..1 und das Spektrum */
+    levels: function () {
+      if (!analyser || !playing) return null;
+      analyser.getByteFrequencyData(fbuf);
+      function avg(a, b) { var s = 0; for (var i = a; i < b; i++) s += fbuf[i]; return s / (b - a) / 255; }
+      return { bass: avg(1, 7), mid: avg(7, 40), high: avg(40, 160), spec: fbuf };
+    },
     get name() { return audioEl ? "Eigener Soundtrack" : "N!DDL Website-Soundtrack"; }
   };
 })();

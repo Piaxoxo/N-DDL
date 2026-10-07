@@ -29,6 +29,22 @@
 
 ---
 
+---
+
+## Next Level (umgesetzt)
+- **Echtes Leuchten (Bloom):** Neon, Scheinwerfer und Glitzer strahlen wie im Musikvideo. Dazu Filmkorn und leichte Farbverschiebung an den Rändern (eigener Final-Shader).
+- **Bühnennebel + Staub im Licht:** zieht über die ganze Seite und bewegt sich langsamer als der Inhalt. So entsteht Tiefe, und alle Abschnitte wirken wie eine Welt.
+- **Holo-Chrom & Glitzer:** Mikro, Buchstaben, Riesenrad-Waggons schimmern je nach Blickwinkel in Regenbogenfarben und funkeln.
+- **Seite tanzt zum Song:** Bass, Beat und Höhen von „I loss mi ned vabiagn“ steuern Scheinwerfer, Leuchten, Buchstaben, Riesenrad-Lichter, Equalizer und ab und zu Konfetti.
+- **Fotos in 3D:** jedes Foto hat eine Tiefenkarte (Kopf/Körper treten nach vorn) + Wasser-Welle beim Drüberfahren.
+- **Wiener Riesenrad:** rote Waggons mit Fensterreihen, Fachwerk-Speichen, Show-Farbe als Neonstreifen.
+- **Mikro:** Kabel, Gravur-Band „N!DDL“, Holo-Lack.
+- **Übergänge:** Kamera-Schwung + flüssiges Verzerren bei jedem Abschnittswechsel; Farbspritzer-Wischer bei Sprüngen über Menü/Links.
+- **Handy neigen** steuert Licht & Kamera (iPhone fragt beim ersten Tippen nach Erlaubnis).
+- **Deutsch / English:** Knopf oben (EN/DE), Sprache wird gemerkt, `?lang=en` als Link möglich. Texte in `i18n.js`.
+- **Credit:** „Eine Website von Bandita“ im Footer + Impressum + Metadaten (Link in `data.js` → `credit.url`).
+- three.js jetzt **selbst gehostet** (`vendor/`) – kein CDN mehr.
+
 ## 2. Design-System
 - **Farben:** Nacht-Lila `#160A24` · Hot Pink `#FF2E88` · Electric Blue `#2E6BFF` · Sonnengelb `#FFD400` · Giftgrün `#9DFF00` · Rock-Orange `#FF6A00` · Creme `#FFF6E5`
 - **Schriften:** Bowlby One (Headlines, mit Pink/Blau-Versatzschatten) · Rubik (Text) · Permanent Marker (Sprüche, Polaroid-Beschriftung)
@@ -60,6 +76,8 @@
 - [ ] Optional: **Video-Clip als MP4** (10–20 Sek. live) → kann die Foto-Show im Header ersetzen
 
 **Technik (ich)**
+- [ ] Bandita-Link eintragen (`data.js` → `credit.url`)
+- [ ] Für Google: eigene englische Adresse (z. B. niddl.com/en) mit hreflang
 - [ ] Schriften lokal einbinden (DSGVO, dann kein Google Fonts)
 - [ ] Three.js lokal statt CDN, Bilder zusätzlich als WebP
 - [ ] Newsletter an echten Dienst anbinden (z. B. Brevo/Mailchimp), Booking-Formular optional an Formular-Dienst statt Mailprogramm

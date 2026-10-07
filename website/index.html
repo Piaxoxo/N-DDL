@@ -6,6 +6,8 @@
 <title>N!DDL – Sängerin aus Wien | Tina Turner Tribute, Rock &amp; Wienerisch</title>
 <meta name="description" content="N!DDL: Starmania-Stimme, Tina-Power, Wiener Schmäh. Konzerte, Tina-Turner-Tribute, neue Songs und Booking. Laut. Bunt. Leiwand.">
 <meta name="theme-color" content="#160A24">
+<meta name="author" content="Bandita">
+<meta name="generator" content="Bandita">
 <meta property="og:title" content="N!DDL – Laut. Bunt. Leiwand.">
 <meta property="og:description" content="Starmania-Stimme, Tina-Power, Wiener Schmäh. Konzerte, Songs und Booking.">
 <meta property="og:image" content="assets/img/pinker-anzug.jpg">
@@ -42,6 +44,7 @@
     <a href="#buchen" class="btn small magnet">N!DDL buchen</a>
   </nav>
   <div class="nav-right">
+    <button class="lang-btn" id="langBtn" type="button" aria-label="Sprache wechseln">EN</button>
     <button class="sound-btn" id="sound" type="button" aria-pressed="false"><span class="ico" aria-hidden="true">🔇</span><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span><span class="lbl">Ton aus</span></button>
     <button class="menu-btn" id="burger" aria-expanded="false" aria-controls="menu"><span class="bars" aria-hidden="true"><span></span><span></span></span><span class="lbl">Menü</span></button>
   </div>
@@ -327,13 +330,17 @@
     <p class="thanks">Danke an: Alex List Fotografie · Dennis Jale · Linda's Fashion &amp; Style · NÖZSV · 48er · Geus.TV · m2k Werbeagentur</p>
     <p><a href="impressum.html">Impressum</a> · <a href="impressum.html#datenschutz">Datenschutz</a></p>
   </div>
+  <div class="container made-by"><a class="bandita-link" href="#" target="_blank" rel="author noopener"><span class="mb-small">Eine Website von</span> <b>Bandita</b> <span aria-hidden="true">★</span></a></div>
 </footer>
 
+<div class="wipe" id="wipe" aria-hidden="true"><i></i><i></i><i></i></div>
 <div class="disco-msg" id="discoMsg" role="status">🪩 DISCO-MODUS! (Nochmal „leiwand“ tippen zum Beenden)</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="vendor/three.min.js"></script>
+<script src="vendor/three-post.js"></script>
 <script src="assets/font-niddl.js"></script>
 <script src="data.js"></script>
+<script src="i18n.js"></script>
 <script src="soundtrack.js"></script>
 <script src="app.js"></script>
 </body>
