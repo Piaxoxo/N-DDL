@@ -167,9 +167,9 @@
   }
   var soundBtn = $("#sound"), heroBtn = $("#soundHero");
   function setSound(on) {
-    soundOn = on; soundBtn.setAttribute("aria-pressed", on); $(".lbl", soundBtn).textContent = on ? "Soundtrack an" : "Ton aus";
+    soundOn = on; soundBtn.setAttribute("aria-pressed", on); $(".lbl", soundBtn).textContent = on ? (DATA.soundtrack ? "♪ I loss mi ned vabiagn" : "Soundtrack an") : "Ton aus";
     heroBtn.textContent = on ? "🔇 Ton aus" : "🔊 Mit Ton erleben";
-    if (on && ac()) { actx.resume(); pop(1.2); if (window.NiddlSoundtrack) NiddlSoundtrack.start(actx, master, DATA.soundtrack || ""); }
+    if (on && ac()) { actx.resume(); pop(1.2); if (window.NiddlSoundtrack) NiddlSoundtrack.start(actx, master, DATA.soundtrack ? asset(DATA.soundtrack) : ""); }
     if (!on && window.NiddlSoundtrack) NiddlSoundtrack.stop();
   }
   soundBtn.addEventListener("click", function () { setSound(!soundOn); });

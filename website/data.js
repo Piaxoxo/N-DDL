@@ -3,7 +3,7 @@
 window.NIDDL_DATA = {
   /* Soundtrack: leer = der eingebaute N!DDL-Rock-Soundtrack spielt.
      Eigene MP3 verwenden: Datei nach assets/audio/ legen und z. B. "assets/audio/i-loss-mi-ned-vabiagn.mp3" eintragen. */
-  soundtrack: "",
+  soundtrack: "assets/audio/i-loss-mi-ned-vabiagn.mp3",
   photos: [
     { file: "pinker-anzug", cap: "Des bin i!", credit: "" },
     { file: "tanzen-lila", cap: "Kein Halbgas. Nie.", credit: "" },

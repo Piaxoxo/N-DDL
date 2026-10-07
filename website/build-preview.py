@@ -9,6 +9,9 @@ for f in sorted(os.listdir(os.path.join(here, "assets/img"))):
         uri = "data:image/jpeg;base64," + base64.b64encode(open(os.path.join(here, "assets/img", f), "rb").read()).decode()
         assets["assets/img/" + f] = uri
         assets["assets/img/full/" + f] = uri  # Vorschau: Lightbox nutzt die kleinere Version
+for f in sorted(os.listdir(os.path.join(here, "assets/audio"))):
+    if f.endswith(".mp3"):
+        assets["assets/audio/" + f] = "data:audio/mpeg;base64," + base64.b64encode(open(os.path.join(here, "assets/audio", f), "rb").read()).decode()
 html = html.replace('<link rel="stylesheet" href="styles.css">', "<style>\n" + rd("styles.css") + "\n</style>")
 html = html.replace('<script src="assets/font-niddl.js"></script>', "<script>window.NIDDL_ASSETS=" + json.dumps(assets) + ";</script>\n<script>\n" + rd("assets/font-niddl.js") + "\n</script>")
 for js in ["data.js", "soundtrack.js", "app.js"]:
