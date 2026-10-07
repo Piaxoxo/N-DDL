@@ -21,9 +21,9 @@
 
 **Navigation:** großer **MENÜ**-Knopf (immer sichtbar) öffnet die „Setlist“ mit bunten Kacheln inkl. nächstem Konzert. Am Desktop zusätzlich Schnelllinks oben und Abschnitts-Punkte rechts, am Handy eine **Leiste unten** (Termine · Musik · Fotos · Buchen).
 
-**Ton:** Ton-Knopf oben + „Mit Ton erleben“ im Intro. Im Intro läuft dann das **YouTube-Video „I loss mi ned vabiagn“ mit Ton** (wird beim Weiterscrollen leiser). Dazu Sound-Effekte: Mikro-Whoosh, Buchstaben-Pops, Kapitel-Swish, Riesenrad-Klick, Kassetten-Akkord, TV-Rauschen, Jukebox, Mic-Drop-Bass.
+**Soundtrack:** Ton-Knopf oben + „Mit Ton erleben“ im Intro starten den **N!DDL Website-Soundtrack** – eine eigene Rocknummer (118 BPM, E–B–C#m–A), live im Browser gespielt (`soundtrack.js`). Jeder Abschnitt hat seinen eigenen Mix: Intro leise mit Flächen → beim Mikro-Öffnen setzt die Band mit Becken-Crash ein, Story ruhiger, Konzerte & Buchen volle Gitarren, Musik mit Arpeggio, TV gedämpft wie aus dem alten Fernseher, nach dem Mic-Drop Ausklang. Eigene MP3 möglich: in `data.js` bei `soundtrack` eintragen. Dazu Sound-Effekte: Mikro-Whoosh, Buchstaben-Pops, Kapitel-Swish, Riesenrad-Klick, Kassetten-Akkord, TV-Rauschen, Jukebox, Mic-Drop-Bass.
 
-**Header-Video:** YouTube-Video läuft stumm in Endlosschleife hinter dem Mikro (bunt eingefärbt), ID in `data.js` → `headerVideo`.
+**Header:** animierte Foto-Show (4 Bühnenfotos, langsamer Zoom + Überblendung) hinter dem Mikro. YouTube wurde entfernt (funktioniert nicht in der Vorschau-Datei und braucht Cookie-Einwilligung).
 
 **Durchgehend:** Plektrum-Cursor, magnetische Buttons, Buchstaben fliegen in Headlines ein, Laufbänder, die sich beim Scrollen verbiegen, Regenbogen-Fortschrittsbalken oben, Hintergrundfarbe wechselt fließend, optionaler Sound (Bass-Knall und Akkord), Easter Egg: **„leiwand“ tippen startet den Disco-Modus** 🪩
 
@@ -56,11 +56,10 @@
 - [ ] Optional: Starmania-Foto, NYC-/Schweden-Fotos für die Story-Karten (jetzt grafische Karten)
 - [ ] Optional: kurze Live-Videos → Video-Loops im Intro und in der Story
 
-- [ ] **Header-Video:** am besten eine eigene MP4-Datei (10–20 Sek. Live-Ausschnitt) statt YouTube → lädt schneller, kein YouTube-Logo, datenschutzfreundlicher
-- [ ] Optional: Hörproben (MP3, 20–30 Sek.) der Songs → spielen dann im Kassetten-Karussell
+- [ ] Optional: eigene **MP3** als Soundtrack (z. B. „I loss mi ned vabiagn“) → ersetzt den eingebauten Soundtrack
+- [ ] Optional: **Video-Clip als MP4** (10–20 Sek. live) → kann die Foto-Show im Header ersetzen
 
 **Technik (ich)**
-- [ ] YouTube nur nach Einwilligung laden (Cookie-Hinweis) – oder durch eigenes MP4 ersetzen
 - [ ] Schriften lokal einbinden (DSGVO, dann kein Google Fonts)
 - [ ] Three.js lokal statt CDN, Bilder zusätzlich als WebP
 - [ ] Newsletter an echten Dienst anbinden (z. B. Brevo/Mailchimp), Booking-Formular optional an Formular-Dienst statt Mailprogramm

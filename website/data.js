@@ -1,7 +1,8 @@
 /* Inhalte der Seite – hier pflegen. Datum im Format JJJJ-MM-TT. ticket: Link oder leer. */
 window.NIDDL_DATA = {
-  /* YouTube-Video im Header (ID aus der YouTube-Adresse ...watch?v=ID) */
-  headerVideo: "U9VcBpB2vCE",
+  /* Soundtrack: leer = der eingebaute N!DDL-Rock-Soundtrack spielt.
+     Eigene MP3 verwenden: Datei nach assets/audio/ legen und z. B. "assets/audio/i-loss-mi-ned-vabiagn.mp3" eintragen. */
+  soundtrack: "",
   photos: [
     { file: "pinker-anzug", cap: "Des bin i!", credit: "" },
     { file: "tanzen-lila", cap: "Kein Halbgas. Nie.", credit: "" },

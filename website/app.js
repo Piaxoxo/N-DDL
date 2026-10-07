@@ -170,10 +170,10 @@
   }
   var soundBtn = $("#sound"), heroBtn = $("#soundHero");
   function setSound(on) {
-    soundOn = on; soundBtn.setAttribute("aria-pressed", on); $(".lbl", soundBtn).textContent = on ? "Ton an" : "Ton aus";
+    soundOn = on; soundBtn.setAttribute("aria-pressed", on); $(".lbl", soundBtn).textContent = on ? "Soundtrack an" : "Ton aus";
     heroBtn.textContent = on ? "🔇 Ton aus" : "🔊 Mit Ton erleben";
-    if (on && ac()) { actx.resume(); pop(1.2); }
-    yt(on ? "unMute" : "mute"); if (on) yt("playVideo");
+    if (on && ac()) { actx.resume(); pop(1.2); if (window.NiddlSoundtrack) NiddlSoundtrack.start(actx, master, DATA.soundtrack || ""); }
+    if (!on && window.NiddlSoundtrack) NiddlSoundtrack.stop();
   }
   soundBtn.addEventListener("click", function () { setSound(!soundOn); });
   heroBtn.addEventListener("click", function () { setSound(!soundOn); });
@@ -209,17 +209,6 @@
     staticGain.gain.setTargetAtTime(v * 0.12, actx.currentTime, 0.05);
   }
 
-  /* YouTube-Header (stumm, Endlosschleife; Ton über den Ton-Knopf) */
-  var ytFrame = null, ytVol = -1;
-  function yt(func, args) { if (ytFrame && ytFrame.contentWindow) ytFrame.contentWindow.postMessage(JSON.stringify({ event: "command", func: func, args: args || [] }), "*"); }
-  if (DATA.headerVideo) {
-    var vid = DATA.headerVideo;
-    ytFrame = document.createElement("iframe");
-    ytFrame.src = "https://www.youtube-nocookie.com/embed/" + vid + "?autoplay=1&mute=1&loop=1&playlist=" + vid + "&controls=0&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&disablekb=1&enablejsapi=1";
-    ytFrame.allow = "autoplay; encrypted-media"; ytFrame.title = "N!DDL – Musikvideo"; ytFrame.tabIndex = -1;
-    ytFrame.addEventListener("load", function () { yt("playVideo"); if (soundOn) yt("unMute"); });
-    $("#ytBox").appendChild(ytFrame);
-  }
   var heroVideo = $("#heroVideo");
   function boom() {
     if (!soundOn || !ac()) return;
@@ -247,6 +236,7 @@
   var sections = {
     hero: $("#top"), story: $("#story"), photos: $("#fotos"), wheel: $("#konzerte"), tapes: $("#musik"), tv: $("#tv"), juke: $("#buchen"), finale: $("#kontakt")
   };
+  var musicOutro = false;
   var glowEl = $("#glow"), marquees = $$(".marquee"), lastY = scrollY, vel = 0, lastSec = "";
   var dotLinks = $$("#dots a").concat($$(".dock a"));
   var hues = [[255, 46, 136], [46, 107, 255], [255, 212, 0], [157, 255, 0], [255, 106, 0], [255, 46, 136]];
@@ -262,8 +252,11 @@
     if (curSec !== lastSec) { lastSec = curSec; dotLinks.forEach(function (a) { var on = a.getAttribute("href") === "#" + curSec || (curSec === "top" && a.dataset.s === "top"); a.classList.toggle("on", on); }); }
     var hs = secState(sections.hero), hp = hs.p, hv = clamp(hs.r.bottom / innerHeight, 0, 1);
     heroVideo.style.setProperty("--hv", ((1 - seg(hp, 0.04, 0.42) * 0.8) * hv).toFixed(3));
-    var vol = soundOn ? Math.round(clamp(hv * 1.2 - 0.1, 0, 1) * 100) : 0;
-    if (vol !== ytVol) { ytVol = vol; yt("setVolume", [vol]); if (soundOn) yt(vol > 0 ? "unMute" : "mute"); }
+    if (soundOn && window.NiddlSoundtrack) {
+      var mus = curSec === "top" ? (hp < 0.12 ? "intro" : "top") : curSec;
+      if (curSec === "kontakt" && musicOutro) mus = "outro";
+      NiddlSoundtrack.section(mus);
+    }
     var hi = gp * (hues.length - 1), a = hues[Math.floor(hi)], b = hues[Math.min(hues.length - 1, Math.floor(hi) + 1)], f = hi - Math.floor(hi);
     var cc = a.map(function (v, i) { return Math.round(v + (b[i] - v) * f); }).join(",");
     glowEl.style.background = "radial-gradient(60% 50% at 60% 42%, rgba(" + cc + ",0.30), rgba(22,10,36,0) 70%), radial-gradient(45% 45% at 10% 95%, rgba(46,107,255,0.16), rgba(22,10,36,0) 70%)";
@@ -761,7 +754,7 @@
     dropG.position.set(b.x + (aspect > 0.9 ? view.w * 0.18 : 0), floorY, 0); dropG.scale.setScalar(s);
     var trigger = b.r.bottom < innerHeight * 1.02;
     if (trigger && drop.state === 0) { drop.state = 1; drop.y = 9; drop.v = 0; drop.rz = 0; }
-    if (b.r.top > innerHeight) drop.state = 0;
+    if (b.r.top > innerHeight) { drop.state = 0; musicOutro = false; }
     if (drop.state === 0) { dmic.g.visible = false; shock.material.opacity = 0; return; }
     dmic.g.visible = true;
     if (drop.state === 1) {
@@ -769,7 +762,7 @@
       var rest = 1.75 * 0.8 * 0 + 0.0;
       if (drop.y <= 0.35) {
         drop.y = 0.35;
-        if (Math.abs(drop.v) > 3) { if (drop.v < -8) { var o = new THREE.Vector3(0, 0.5, 0); dropG.localToWorld(o); burst(o); drop.shake = 0.6; drop.shock = 1; } drop.v = -drop.v * 0.38; }
+        if (Math.abs(drop.v) > 3) { if (drop.v < -8) { var o = new THREE.Vector3(0, 0.5, 0); dropG.localToWorld(o); burst(o); drop.shake = 0.6; drop.shock = 1; musicOutro = true; if (window.NiddlSoundtrack) NiddlSoundtrack.crash(); } drop.v = -drop.v * 0.38; }
         else { drop.v = 0; drop.state = 2; }
       }
       drop.rz += (1.35 - drop.rz) * Math.min(1, dt * (drop.y < 1.2 ? 9 : 1.5));
