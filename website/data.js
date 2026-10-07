@@ -54,20 +54,18 @@ window.NIDDL_DATA = {
     danzer: { label: "Danzermania", color: "#9DFF00" },
     special: { label: "Special", color: "#FFF6E5" }
   },
-  /* Hörproben: MP3 nach assets/audio/ legen und bei "audio" eintragen, z. B. "assets/audio/i-loss-mi-ned-vabiagn.mp3".
-     start = ab welcher Sekunde die Hörprobe beginnt (z. B. beim Refrain). Gespielt werden 30 Sekunden. */
   releases: [
-    { title: "I loss mi ned vabiagn", sub: "Die neue Single", audio: "", start: 0 },
-    { title: "Nimma so weh", sub: "Cello Piano Version", audio: "", start: 0 },
-    { title: "Cornetto und Badegwand", sub: "Single", audio: "", start: 0 },
-    { title: "Unter dem Meer", sub: "mit Jerome Collard", audio: "", start: 0 },
-    { title: "leiwande Zeit", sub: "feat. Lenard Luis", audio: "", start: 0 },
-    { title: "So selten bist du", sub: "mit Willi Dussmann", audio: "", start: 0 },
-    { title: "jetzt oder nie", sub: "Single", audio: "", start: 0 },
-    { title: "A1 Smile Weihnachtssong", sub: "Weihnachten", audio: "", start: 0 },
-    { title: "Nimma so weh", sub: "Original", audio: "", start: 0 },
-    { title: "Verliabt", sub: "Single", audio: "", start: 0 },
-    { title: "Pullover", sub: "Dennis Jale & Niddl", audio: "", start: 0 }
+    { title: "I loss mi ned vabiagn", sub: "Die neue Single" },
+    { title: "Nimma so weh", sub: "Cello Piano Version" },
+    { title: "Cornetto und Badegwand", sub: "Single" },
+    { title: "Unter dem Meer", sub: "mit Jerome Collard" },
+    { title: "leiwande Zeit", sub: "feat. Lenard Luis" },
+    { title: "So selten bist du", sub: "mit Willi Dussmann" },
+    { title: "jetzt oder nie", sub: "Single" },
+    { title: "A1 Smile Weihnachtssong", sub: "Weihnachten" },
+    { title: "Nimma so weh", sub: "Original" },
+    { title: "Verliabt", sub: "Single" },
+    { title: "Pullover", sub: "Dennis Jale & Niddl" }
   ],
   formats: [
     "Die Energie, die Stimm, die Haxn. Meine Verbeugung vor der Queen of Rock'n'Roll. Ka Kopie, pure Liebe. Für Theater, Säle und Open Airs.",

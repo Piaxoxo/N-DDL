@@ -108,49 +108,13 @@
   var tapeCols = ["#FF2E88", "#2E6BFF", "#FFD400", "#9DFF00", "#FF6A00"];
   $("#releases").innerHTML = DATA.releases.map(function (r, i) {
     var q = encodeURIComponent("Niddl " + r.title);
-    return '<li style="--c:' + tapeCols[i % 5] + '"><button class="play" type="button" data-i="' + i + '" aria-label="Hörprobe: ' + r.title + '"' + (r.audio ? "" : ' data-soon="1"') + '><span class="ic" aria-hidden="true">▶</span><i class="bar" aria-hidden="true"></i></button>' +
-      '<span class="info"><b>' + r.title + "</b><small>" + r.sub + (r.audio ? "" : " · Hörprobe folgt") + '</small></span><a class="yt" href="https://www.youtube.com/results?search_query=' + q + '" target="_blank" rel="noopener" aria-label="' + r.title + ' auf YouTube">YouTube ↗</a></li>';
+    return '<li style="--c:' + tapeCols[i % 5] + '"><span class="dot" aria-hidden="true"></span><span class="info"><b>' + r.title + "</b><small>" + r.sub + '</small></span><a class="yt" href="https://www.youtube.com/results?search_query=' + q + '" target="_blank" rel="noopener" aria-label="' + r.title + ' auf YouTube">YouTube ↗</a></li>';
   }).join("");
-
-  // Hörproben-Player (30 Sek.), der Soundtrack pausiert solange
-  var snip = new Audio(), snipIdx = -1, snipTimer = null, snipFade = null, musicWasOn = false;
-  snip.preload = "none";
-  function snipUI() {
-    $$("#releases .play").forEach(function (b) { var on = +b.dataset.i === snipIdx; b.classList.toggle("on", on); $(".ic", b).textContent = on ? "■" : "▶"; });
-    var np = $("#npPlay"), on = snipIdx === curTape && snipIdx >= 0;
-    np.classList.toggle("on", on); $(".ic", np).textContent = on ? "■" : "▶"; $(".tx", np).textContent = on ? "Stopp" : (DATA.releases[curTape] && DATA.releases[curTape].audio ? "Hörprobe" : "Hörprobe folgt");
-  }
-  function stopSnippet(resume) {
-    clearTimeout(snipTimer); clearInterval(snipFade); snip.pause(); snipIdx = -1;
-    document.documentElement.style.setProperty("--snip", 0); snipUI();
-    if (resume && musicWasOn && soundOn && window.NiddlSoundtrack) NiddlSoundtrack.start(actx, master, DATA.soundtrack || "");
-    musicWasOn = false;
-  }
-  function playSnippet(i) {
-    var r = DATA.releases[i];
-    if (snipIdx === i) { stopSnippet(true); return; }
-    if (!r.audio) { $("#rlNote").textContent = "„" + r.title + "“: Hörprobe kommt bald. Bis dahin auf Spotify oder YouTube reinhören!"; tick(); return; }
-    if (snipIdx >= 0) stopSnippet(false);
-    if (window.NiddlSoundtrack && NiddlSoundtrack.playing) { musicWasOn = true; NiddlSoundtrack.stop(); }
-    snipIdx = i; snip.src = asset(r.audio); snip.volume = 0;
-    var go = function () { try { snip.currentTime = r.start || 0; } catch (e) { } };
-    snip.addEventListener("loadedmetadata", go, { once: true });
-    snip.play().then(function () {
-      var v = 0; snipFade = setInterval(function () { v = Math.min(1, v + 0.08); snip.volume = v; if (v >= 1) clearInterval(snipFade); }, 60);
-    }).catch(function () { $("#rlNote").textContent = "Die Hörprobe konnte nicht geladen werden."; stopSnippet(true); });
-    snipTimer = setTimeout(function () { stopSnippet(true); }, 30000);
-    $("#rlNote").textContent = "▶ " + r.title + " – Hörprobe (30 Sek.)"; snipUI();
-  }
-  snip.addEventListener("timeupdate", function () { if (snipIdx < 0) return; var r = DATA.releases[snipIdx]; document.documentElement.style.setProperty("--snip", clamp((snip.currentTime - (r.start || 0)) / 30, 0, 1).toFixed(3)); });
-  snip.addEventListener("ended", function () { stopSnippet(true); });
-  $$("#releases .play").forEach(function (b) { b.addEventListener("click", function () { playSnippet(+b.dataset.i); }); });
-  $("#npPlay").addEventListener("click", function () { playSnippet(curTape); });
   var curTape = -1;
   function setTape(i) {
     if (i === curTape) return; if (curTape >= 0) { tick(0.8); chord(196 * Math.pow(2, (i % 7) / 12)); } curTape = i;
     $("#tapeTitle").textContent = DATA.releases[i].title; $("#tapeSub").textContent = DATA.releases[i].sub;
     $(".now-playing").style.setProperty("--tc", tapeCols[i % 5]);
-    if (typeof snipUI === "function" && $("#npPlay")) snipUI();
   }
   setTape(0);
 
@@ -203,7 +167,6 @@
   }
   var soundBtn = $("#sound"), heroBtn = $("#soundHero");
   function setSound(on) {
-    if (on && snipIdx >= 0) stopSnippet(false);
     soundOn = on; soundBtn.setAttribute("aria-pressed", on); $(".lbl", soundBtn).textContent = on ? "Soundtrack an" : "Ton aus";
     heroBtn.textContent = on ? "🔇 Ton aus" : "🔊 Mit Ton erleben";
     if (on && ac()) { actx.resume(); pop(1.2); if (window.NiddlSoundtrack) NiddlSoundtrack.start(actx, master, DATA.soundtrack || ""); }
@@ -684,7 +647,7 @@
       var a = i / NT * Math.PI * 2; g.position.set(Math.sin(a) * TR, Math.sin(t * 1.2 + i) * 0.08, Math.cos(a) * TR); g.rotation.y = a;
       var front = clamp(1 - Math.abs(((i - cur) % NT + NT + NT / 2) % NT - NT / 2), 0, 1);
       g.scale.setScalar(1 + front * 0.25); g.position.y += front * 0.25;
-      var sp = i === snipIdx ? 14 : 0.6 + front * 6;
+      var sp = 0.6 + front * 6;
       g.userData.reels.forEach(function (r) { r.rotation.y -= dt * sp; });
     });
     eq.forEach(function (bar, i) { var h = reduce ? 0.5 : 0.25 + Math.abs(Math.sin(t * (3 + i * 0.37) + i) * Math.cos(t * 1.7 + i * 0.5)) * 1.4; bar.scale.y = h; bar.position.y = -2.1 + h / 2; });
