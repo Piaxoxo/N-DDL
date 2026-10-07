@@ -76,7 +76,7 @@
 - [ ] Optional: **Video-Clip als MP4** (10–20 Sek. live) → kann die Foto-Show im Header ersetzen
 
 **Technik (ich)**
-- [ ] Bandita-Link eintragen (`data.js` → `credit.url`)
+- [x] Bandita-Link eingetragen: https://www.bandita.agency/de
 - [ ] Für Google: eigene englische Adresse (z. B. niddl.com/en) mit hreflang
 - [ ] Schriften lokal einbinden (DSGVO, dann kein Google Fonts)
 - [ ] Three.js lokal statt CDN, Bilder zusätzlich als WebP
