@@ -166,9 +166,6 @@
     <div class="anchor wide" id="aPhotos" aria-hidden="true"></div>
   </div>
 </section>
-<section class="container thumbs-wrap" aria-label="Alle Fotos">
-  <ul class="thumbs" id="thumbs"></ul>
-</section>
 
 <!-- ============ KONZERTE: Neon-Riesenrad ============ -->
 <section id="konzerte" class="scene sticky-scene" data-scene="wheel" style="--len:6" aria-label="Konzerte">
@@ -183,6 +180,7 @@
           <span class="gig-tag" id="gigTag">Special</span>
           <h3 id="gigTitle">Der Lustige Hermann und seine Freunde</h3>
           <p id="gigPlace">Z2000, Stockerau · 16:00</p>
+          <span class="sold" id="gigSold" hidden>Ausverkauft</span>
           <a class="btn small magnet" id="gigLink" href="https://www.niddl.com/" target="_blank" rel="noopener">Tickets</a>
         </div>
       </article>
@@ -217,6 +215,7 @@
         <span class="np-label">Jetzt im Tapedeck</span>
         <b id="tapeTitle">I loss mi ned vabiagn</b>
         <span id="tapeSub">Die neue Single</span>
+        <button class="np-play" id="npPlay" type="button"><span class="ic" aria-hidden="true">▶</span><span class="tx">Hörprobe</span><i class="bar" aria-hidden="true"></i></button>
       </div>
       <div class="cta">
         <a class="btn magnet" href="https://open.spotify.com/artist/3mLj9TJ70RiDv30LGxpDHh" target="_blank" rel="noopener">Auf Spotify hören</a>
@@ -228,7 +227,9 @@
 </section>
 
 <section class="container release-list" aria-label="Alle Releases">
+  <h3 class="rl-title">Alle Songs – reinhören</h3>
   <ul id="releases"></ul>
+  <p class="rl-note" id="rlNote" aria-live="polite"></p>
 </section>
 
 <!-- ============ TV ============ -->

@@ -1,4 +1,5 @@
-/* Inhalte der Seite – hier pflegen. Datum im Format JJJJ-MM-TT. ticket: Link oder leer. */
+/* Inhalte der Seite – hier pflegen. Datum im Format JJJJ-MM-TT.
+   ticket: Link direkt zum Ticketverkauf (oder leer = „Infos folgen“), ticketLabel: optionaler Button-Text, soldout: true = „Ausverkauft“. */
 window.NIDDL_DATA = {
   /* Soundtrack: leer = der eingebaute N!DDL-Rock-Soundtrack spielt.
      Eigene MP3 verwenden: Datei nach assets/audio/ legen und z. B. "assets/audio/i-loss-mi-ned-vabiagn.mp3" eintragen. */
@@ -19,31 +20,31 @@ window.NIDDL_DATA = {
     { file: "see", cap: "Durchatmen am See", credit: "" }
   ],
   gigs: [
-    { date: "2026-10-11", title: "N!DDL @ Der Lustige Hermann und seine Freunde", place: "Veranstaltungszentrum Z2000, Stockerau", time: "16:00 (Einlass 15:00)", type: "special", ticket: "https://www.niddl.com/" },
-    { date: "2026-10-17", title: "Tina & Elvis by N!DDL und Dennis Jale", place: "Basement Music, Amberg", time: "18:00", type: "elvis", ticket: "https://www.niddl.com/" },
-    { date: "2026-10-23", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://www.niddl.com/" },
-    { date: "2026-10-24", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://www.niddl.com/" },
-    { date: "2026-10-25", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://www.niddl.com/" },
-    { date: "2026-10-26", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://www.niddl.com/" },
-    { date: "2026-10-27", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://www.niddl.com/" },
+    { date: "2026-10-11", title: "N!DDL @ Der Lustige Hermann und seine Freunde", place: "Veranstaltungszentrum Z2000, Stockerau", time: "16:00 (Einlass 15:00)", type: "special", ticket: "https://www.stockerau.at/Der_Lustige_Hermann_und_seine_Freunde_2", ticketLabel: "Infos & Reservierung" },
+    { date: "2026-10-17", title: "Tina & Elvis by N!DDL und Dennis Jale", place: "Musikomm, Amberg", time: "20:00 (Einlass 19:30)", type: "elvis", ticket: "https://okticket.de/tickets-elvis-tina-amberg-musikomm-2026-10-17-e56585?event_id=56585" },
+    { date: "2026-10-23", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://orpheum.at/programm/", soldout: true },
+    { date: "2026-10-24", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://orpheum.at/programm/", soldout: true },
+    { date: "2026-10-25", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://orpheum.at/programm/", soldout: true },
+    { date: "2026-10-26", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://orpheum.at/programm/", soldout: true },
+    { date: "2026-10-27", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://orpheum.at/programm/", soldout: true },
     { date: "2026-11-19", title: "N!DDL special guest @ Wiener Wahnsinn", place: "Schiffsfahrt Bratislava", time: "", type: "special", ticket: "" },
     { date: "2026-11-20", title: "N!DDL special guest @ Wiener Wahnsinn", place: "Schiffsfahrt Bratislava", time: "", type: "special", ticket: "" },
     { date: "2026-11-21", title: "N!DDL special guest for Sam Brisbe", place: "Infos folgen", time: "", type: "special", ticket: "" },
     { date: "2026-11-27", title: "Tina & Elvis by N!DDL und Dennis Jale", place: "Leoben", time: "20:00", type: "elvis", ticket: "" },
-    { date: "2026-11-28", title: "N!DDL – a tribute to TINA TURNER", place: "Metropol Wien", time: "19:00", type: "tina", ticket: "https://www.niddl.com/" },
-    { date: "2026-12-01", title: "N!DDL & Dennis Jale – The Morrison Family: Christmas Lights", place: "Das Vindobona, Wien", time: "19:30", type: "special", ticket: "https://www.niddl.com/" },
-    { date: "2026-12-02", title: "ROCK IN PEACE – Driving Home for Christmas", place: "Metropol Wien", time: "20:00", type: "rip", ticket: "https://www.niddl.com/" },
+    { date: "2026-11-28", title: "N!DDL – a tribute to TINA TURNER", place: "Wiener Metropol", time: "20:00", type: "tina", ticket: "https://www.oeticket.com/eventseries/nddl-tribute-to-tina-turner-4124454/" },
+    { date: "2026-12-01", title: "American Christmas Gospels – N!DDL & Dennis Jale mit Donna Rhodes & The Morris Family", place: "Das Vindobona, Wien", time: "19:30", type: "special", ticket: "https://vindobona.wien/events" },
+    { date: "2026-12-02", title: "ROCK IN PEACE – Driving Home for Christmas", place: "Wiener Metropol", time: "20:00", type: "rip", ticket: "https://rip.band/live-termine/" },
     { date: "2026-12-04", title: "VIENNESE LADIES Gospel", place: "Infos folgen", time: "", type: "gospel", ticket: "" },
     { date: "2026-12-08", title: "VIENNESE LADIES Gospel", place: "Metropoldi Wien", time: "19:00", type: "gospel", ticket: "" },
     { date: "2026-12-09", title: "N!DDL – DDSG Vienna Christmas Time", place: "DDSG, Wien", time: "", type: "special", ticket: "" },
-    { date: "2026-12-11", title: "ROCK IN PEACE", place: "Metropol Wien", time: "20:00", type: "rip", ticket: "" },
+    { date: "2026-12-11", title: "ROCK IN PEACE", place: "Wiener Metropol", time: "20:00", type: "rip", ticket: "https://rip.band/live-termine/" },
     { date: "2026-12-13", title: "N!DDL – NÖ Zivilschutzverband Jahresabschlussfeier", place: "Schloss Zeillern", time: "", type: "special", ticket: "" },
-    { date: "2026-12-18", title: "ROCK IN PEACE", place: "Konzerthaus Weinviertel, Ziersdorf", time: "19:30", type: "rip", ticket: "https://www.niddl.com/" },
+    { date: "2026-12-18", title: "ROCK IN PEACE", place: "Konzerthaus Weinviertel, Ziersdorf", time: "19:30", type: "rip", ticket: "https://konzerthaus-weinviertel.at/ticket/" },
     { date: "2026-12-26", title: "N!DDL & friends am Wintermarkt", place: "Wintermarkt im Prater, Wien", time: "19:30", type: "special", ticket: "" },
-    { date: "2027-01-14", title: "VIENNESE LADIES Gospel Group", place: "KULT ZELT Peyerbach", time: "19:30", type: "gospel", ticket: "https://www.niddl.com/" },
-    { date: "2027-01-21", title: "N!DDL – a tribute to TINA TURNER", place: "KULT ZELT Peyerbach", time: "19:30", type: "tina", ticket: "https://www.niddl.com/" },
+    { date: "2027-01-14", title: "VIENNESE LADIES Gospel Group", place: "Kult-Zelt Payerbach", time: "19:30", type: "gospel", ticket: "https://www.oeticket.com/city/payerbach-1189/venue/kult-zelt-payerbach-86391/" },
+    { date: "2027-01-21", title: "N!DDL – a tribute to TINA TURNER", place: "Kult-Zelt Payerbach", time: "19:30", type: "tina", ticket: "https://www.oeticket.com/city/payerbach-1189/venue/kult-zelt-payerbach-86391/" },
     { date: "2027-05-08", title: "N!DDL – a tribute to TINA TURNER", place: "Bayern – Infos folgen", time: "", type: "tina", ticket: "" },
-    { date: "2027-10-07", title: "TCB Elvis Cruise feat. N!DDL (bis 14.10.)", place: "TCB Cruise 2027 – Dennis Jale & The Original Musicians Of Elvis & Friends", time: "", type: "elvis", ticket: "https://www.niddl.com/" }
+    { date: "2027-10-07", title: "TCB Elvis Cruise feat. N!DDL (bis 14.10.)", place: "TCB Cruise 2027 – Dennis Jale & The Original Musicians Of Elvis & Friends", time: "", type: "elvis", ticket: "https://dennis-jale.com/en/good-old-rocknroll/tcb-cruise-2027/", ticketLabel: "Buchen" }
   ],
   types: {
     tina: { label: "Tina Tribute", color: "#FF2E88" },
@@ -53,18 +54,20 @@ window.NIDDL_DATA = {
     danzer: { label: "Danzermania", color: "#9DFF00" },
     special: { label: "Special", color: "#FFF6E5" }
   },
+  /* Hörproben: MP3 nach assets/audio/ legen und bei "audio" eintragen, z. B. "assets/audio/i-loss-mi-ned-vabiagn.mp3".
+     start = ab welcher Sekunde die Hörprobe beginnt (z. B. beim Refrain). Gespielt werden 30 Sekunden. */
   releases: [
-    { title: "I loss mi ned vabiagn", sub: "Die neue Single" },
-    { title: "Nimma so weh", sub: "Cello Piano Version" },
-    { title: "Cornetto und Badegwand", sub: "Single" },
-    { title: "Unter dem Meer", sub: "mit Jerome Collard" },
-    { title: "leiwande Zeit", sub: "feat. Lenard Luis" },
-    { title: "So selten bist du", sub: "mit Willi Dussmann" },
-    { title: "jetzt oder nie", sub: "Single" },
-    { title: "A1 Smile Weihnachtssong", sub: "Weihnachten" },
-    { title: "Nimma so weh", sub: "Original" },
-    { title: "Verliabt", sub: "Single" },
-    { title: "Pullover", sub: "Dennis Jale & Niddl" }
+    { title: "I loss mi ned vabiagn", sub: "Die neue Single", audio: "", start: 0 },
+    { title: "Nimma so weh", sub: "Cello Piano Version", audio: "", start: 0 },
+    { title: "Cornetto und Badegwand", sub: "Single", audio: "", start: 0 },
+    { title: "Unter dem Meer", sub: "mit Jerome Collard", audio: "", start: 0 },
+    { title: "leiwande Zeit", sub: "feat. Lenard Luis", audio: "", start: 0 },
+    { title: "So selten bist du", sub: "mit Willi Dussmann", audio: "", start: 0 },
+    { title: "jetzt oder nie", sub: "Single", audio: "", start: 0 },
+    { title: "A1 Smile Weihnachtssong", sub: "Weihnachten", audio: "", start: 0 },
+    { title: "Nimma so weh", sub: "Original", audio: "", start: 0 },
+    { title: "Verliabt", sub: "Single", audio: "", start: 0 },
+    { title: "Pullover", sub: "Dennis Jale & Niddl", audio: "", start: 0 }
   ],
   formats: [
     "Die Energie, die Stimm, die Haxn. Meine Verbeugung vor der Queen of Rock'n'Roll. Ka Kopie, pure Liebe. Für Theater, Säle und Open Airs.",

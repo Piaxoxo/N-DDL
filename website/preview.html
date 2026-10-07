@@ -161,12 +161,7 @@ h3{font-family:var(--display);font-size:clamp(21px,2.2vw,28px);line-height:1.25;
 .now-playing{margin-top:auto;display:flex;flex-direction:column;gap:2px;padding:16px 20px;border-radius:18px;background:rgba(36,16,58,.85);border:3px solid var(--tc,var(--pink));box-shadow:6px 6px 0 var(--tc,var(--pink));backdrop-filter:blur(6px)}
 .np-label{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .now-playing b{font-family:var(--display);font-size:clamp(24px,3vw,34px);font-weight:400;line-height:1.05}
-.release-list ul{list-style:none;margin:0;padding:30px 0 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-.release-list li a{display:flex;align-items:center;gap:14px;padding:12px 14px;border-radius:14px;background:rgba(36,16,58,.85);color:var(--cream);text-decoration:none;border:2px solid transparent;transition:border-color .2s,transform .2s}
-.release-list li a:hover{border-color:var(--c);transform:translateY(-3px)}
-.release-list .mini{flex:none;width:52px;height:34px;border-radius:5px;background:var(--c);position:relative;box-shadow:inset 0 0 0 3px rgba(22,10,36,.25)}
-.release-list .mini::before,.release-list .mini::after{content:"";position:absolute;top:10px;width:13px;height:13px;border-radius:50%;background:var(--night);box-shadow:0 0 0 2px var(--cream)}
-.release-list .mini::before{left:9px}.release-list .mini::after{right:9px}
+.release-list ul{list-style:none;margin:0;padding:30px 0 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:16px}
 .release-list b{display:block;font-size:15px}
 .release-list small{color:var(--muted)}
 
@@ -313,11 +308,6 @@ body.menu-open{overflow:hidden}
 .photo-cap{margin:auto 0 0;font-family:var(--scribble);font-size:clamp(26px,3.4vw,44px);color:var(--sun);transform:rotate(-3deg);position:relative;z-index:2;text-shadow:0 2px 14px rgba(10,4,20,.9)}
 .anchor.wide{left:var(--gutter);right:var(--gutter);width:auto;top:44%;bottom:4%}
 .photo-head .big{font-size:clamp(30px,4.4vw,60px)}
-.thumbs-wrap{padding-block:30px 40px}
-.thumbs{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px}
-.thumbs button{display:block;width:100%;padding:6px 6px 22px;background:var(--cream);border:0;border-radius:6px;box-shadow:4px 4px 0 var(--c);transform:rotate(var(--r));transition:transform .2s}
-.thumbs button:hover{transform:rotate(0) scale(1.05)}
-.thumbs img{aspect-ratio:1;object-fit:cover;width:100%;border-radius:3px}
 .lightbox{position:fixed;inset:0;z-index:70;background:rgba(10,4,20,.94);display:flex;align-items:center;justify-content:center;gap:16px;padding:24px}
 .lightbox figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:14px;max-width:min(92vw,1100px)}
 .lightbox img{max-height:78vh;width:auto;border:10px solid var(--cream);border-bottom-width:14px;border-radius:6px;box-shadow:10px 10px 0 var(--pink)}
@@ -352,6 +342,28 @@ body.menu-open{overflow:hidden}
   .lightbox img{max-height:64vh}
   .anchor.wide{top:26%;bottom:16%}
 }
+
+/* ---------- Hörproben ---------- */
+.np-play,.release-list .play{position:relative;overflow:hidden;font:800 13px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--night);background:var(--sun);border:3px solid var(--night);border-radius:999px}
+.np-play{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;margin-top:12px;padding:10px 18px 10px 14px}
+.np-play .ic,.release-list .play .ic{font-size:14px;line-height:1;position:relative;z-index:1}
+.np-play .tx{position:relative;z-index:1}
+.np-play .bar,.release-list .play .bar{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--lime)}
+.np-play.on .bar,.release-list .play.on .bar{width:calc(var(--snip,0)*100%)}
+.np-play.on,.release-list .play.on{background:var(--pink);color:var(--cream)}
+.rl-title{margin-top:20px;color:var(--sun);font-size:24px}
+.rl-note{min-height:1.5em;margin:0 0 50px;color:var(--muted);font-weight:600}
+.release-list ul{padding-top:18px}
+.release-list li{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:16px;background:rgba(36,16,58,.85);border:2px solid transparent;transition:border-color .2s}
+.release-list li:hover{border-color:var(--c)}
+.release-list .play{flex:none;width:46px;height:46px;display:grid;place-items:center;background:var(--c)}
+.release-list .play[data-soon]{opacity:.55}
+.release-list .info{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+.release-list .info b{font-size:15px;line-height:1.3}
+.release-list .info small{color:var(--muted)}
+.release-list .yt{flex:none;font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--cream);text-decoration:none;opacity:.7}
+.release-list .yt:hover{opacity:1;color:var(--sun)}
+.sold{display:inline-block;font-family:var(--display);font-size:13px;letter-spacing:.06em;color:var(--cream);background:var(--pink);padding:6px 12px;border-radius:8px;transform:rotate(-4deg);white-space:nowrap;align-self:flex-start}
 
 </style>
 <script type="application/ld+json">
@@ -505,9 +517,6 @@ body.menu-open{overflow:hidden}
     <div class="anchor wide" id="aPhotos" aria-hidden="true"></div>
   </div>
 </section>
-<section class="container thumbs-wrap" aria-label="Alle Fotos">
-  <ul class="thumbs" id="thumbs"></ul>
-</section>
 
 <!-- ============ KONZERTE: Neon-Riesenrad ============ -->
 <section id="konzerte" class="scene sticky-scene" data-scene="wheel" style="--len:6" aria-label="Konzerte">
@@ -522,6 +531,7 @@ body.menu-open{overflow:hidden}
           <span class="gig-tag" id="gigTag">Special</span>
           <h3 id="gigTitle">Der Lustige Hermann und seine Freunde</h3>
           <p id="gigPlace">Z2000, Stockerau · 16:00</p>
+          <span class="sold" id="gigSold" hidden>Ausverkauft</span>
           <a class="btn small magnet" id="gigLink" href="https://www.niddl.com/" target="_blank" rel="noopener">Tickets</a>
         </div>
       </article>
@@ -556,6 +566,7 @@ body.menu-open{overflow:hidden}
         <span class="np-label">Jetzt im Tapedeck</span>
         <b id="tapeTitle">I loss mi ned vabiagn</b>
         <span id="tapeSub">Die neue Single</span>
+        <button class="np-play" id="npPlay" type="button"><span class="ic" aria-hidden="true">▶</span><span class="tx">Hörprobe</span><i class="bar" aria-hidden="true"></i></button>
       </div>
       <div class="cta">
         <a class="btn magnet" href="https://open.spotify.com/artist/3mLj9TJ70RiDv30LGxpDHh" target="_blank" rel="noopener">Auf Spotify hören</a>
@@ -567,7 +578,9 @@ body.menu-open{overflow:hidden}
 </section>
 
 <section class="container release-list" aria-label="Alle Releases">
+  <h3 class="rl-title">Alle Songs – reinhören</h3>
   <ul id="releases"></ul>
+  <p class="rl-note" id="rlNote" aria-live="polite"></p>
 </section>
 
 <!-- ============ TV ============ -->
@@ -678,7 +691,8 @@ window.NIDDL_FONT={"glyphs":{"N":{"x_min":0,"x_max":833,"ha":949,"o":"m 833 0 l 
 
 </script>
 <script>
-/* Inhalte der Seite – hier pflegen. Datum im Format JJJJ-MM-TT. ticket: Link oder leer. */
+/* Inhalte der Seite – hier pflegen. Datum im Format JJJJ-MM-TT.
+   ticket: Link direkt zum Ticketverkauf (oder leer = „Infos folgen“), ticketLabel: optionaler Button-Text, soldout: true = „Ausverkauft“. */
 window.NIDDL_DATA = {
   /* Soundtrack: leer = der eingebaute N!DDL-Rock-Soundtrack spielt.
      Eigene MP3 verwenden: Datei nach assets/audio/ legen und z. B. "assets/audio/i-loss-mi-ned-vabiagn.mp3" eintragen. */
@@ -699,31 +713,31 @@ window.NIDDL_DATA = {
     { file: "see", cap: "Durchatmen am See", credit: "" }
   ],
   gigs: [
-    { date: "2026-10-11", title: "N!DDL @ Der Lustige Hermann und seine Freunde", place: "Veranstaltungszentrum Z2000, Stockerau", time: "16:00 (Einlass 15:00)", type: "special", ticket: "https://www.niddl.com/" },
-    { date: "2026-10-17", title: "Tina & Elvis by N!DDL und Dennis Jale", place: "Basement Music, Amberg", time: "18:00", type: "elvis", ticket: "https://www.niddl.com/" },
-    { date: "2026-10-23", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://www.niddl.com/" },
-    { date: "2026-10-24", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://www.niddl.com/" },
-    { date: "2026-10-25", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://www.niddl.com/" },
-    { date: "2026-10-26", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://www.niddl.com/" },
-    { date: "2026-10-27", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://www.niddl.com/" },
+    { date: "2026-10-11", title: "N!DDL @ Der Lustige Hermann und seine Freunde", place: "Veranstaltungszentrum Z2000, Stockerau", time: "16:00 (Einlass 15:00)", type: "special", ticket: "https://www.stockerau.at/Der_Lustige_Hermann_und_seine_Freunde_2", ticketLabel: "Infos & Reservierung" },
+    { date: "2026-10-17", title: "Tina & Elvis by N!DDL und Dennis Jale", place: "Musikomm, Amberg", time: "20:00 (Einlass 19:30)", type: "elvis", ticket: "https://okticket.de/tickets-elvis-tina-amberg-musikomm-2026-10-17-e56585?event_id=56585" },
+    { date: "2026-10-23", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://orpheum.at/programm/", soldout: true },
+    { date: "2026-10-24", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://orpheum.at/programm/", soldout: true },
+    { date: "2026-10-25", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://orpheum.at/programm/", soldout: true },
+    { date: "2026-10-26", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://orpheum.at/programm/", soldout: true },
+    { date: "2026-10-27", title: "Danzermania", place: "Orpheum Wien", time: "19:30", type: "danzer", ticket: "https://orpheum.at/programm/", soldout: true },
     { date: "2026-11-19", title: "N!DDL special guest @ Wiener Wahnsinn", place: "Schiffsfahrt Bratislava", time: "", type: "special", ticket: "" },
     { date: "2026-11-20", title: "N!DDL special guest @ Wiener Wahnsinn", place: "Schiffsfahrt Bratislava", time: "", type: "special", ticket: "" },
     { date: "2026-11-21", title: "N!DDL special guest for Sam Brisbe", place: "Infos folgen", time: "", type: "special", ticket: "" },
     { date: "2026-11-27", title: "Tina & Elvis by N!DDL und Dennis Jale", place: "Leoben", time: "20:00", type: "elvis", ticket: "" },
-    { date: "2026-11-28", title: "N!DDL – a tribute to TINA TURNER", place: "Metropol Wien", time: "19:00", type: "tina", ticket: "https://www.niddl.com/" },
-    { date: "2026-12-01", title: "N!DDL & Dennis Jale – The Morrison Family: Christmas Lights", place: "Das Vindobona, Wien", time: "19:30", type: "special", ticket: "https://www.niddl.com/" },
-    { date: "2026-12-02", title: "ROCK IN PEACE – Driving Home for Christmas", place: "Metropol Wien", time: "20:00", type: "rip", ticket: "https://www.niddl.com/" },
+    { date: "2026-11-28", title: "N!DDL – a tribute to TINA TURNER", place: "Wiener Metropol", time: "20:00", type: "tina", ticket: "https://www.oeticket.com/eventseries/nddl-tribute-to-tina-turner-4124454/" },
+    { date: "2026-12-01", title: "American Christmas Gospels – N!DDL & Dennis Jale mit Donna Rhodes & The Morris Family", place: "Das Vindobona, Wien", time: "19:30", type: "special", ticket: "https://vindobona.wien/events" },
+    { date: "2026-12-02", title: "ROCK IN PEACE – Driving Home for Christmas", place: "Wiener Metropol", time: "20:00", type: "rip", ticket: "https://rip.band/live-termine/" },
     { date: "2026-12-04", title: "VIENNESE LADIES Gospel", place: "Infos folgen", time: "", type: "gospel", ticket: "" },
     { date: "2026-12-08", title: "VIENNESE LADIES Gospel", place: "Metropoldi Wien", time: "19:00", type: "gospel", ticket: "" },
     { date: "2026-12-09", title: "N!DDL – DDSG Vienna Christmas Time", place: "DDSG, Wien", time: "", type: "special", ticket: "" },
-    { date: "2026-12-11", title: "ROCK IN PEACE", place: "Metropol Wien", time: "20:00", type: "rip", ticket: "" },
+    { date: "2026-12-11", title: "ROCK IN PEACE", place: "Wiener Metropol", time: "20:00", type: "rip", ticket: "https://rip.band/live-termine/" },
     { date: "2026-12-13", title: "N!DDL – NÖ Zivilschutzverband Jahresabschlussfeier", place: "Schloss Zeillern", time: "", type: "special", ticket: "" },
-    { date: "2026-12-18", title: "ROCK IN PEACE", place: "Konzerthaus Weinviertel, Ziersdorf", time: "19:30", type: "rip", ticket: "https://www.niddl.com/" },
+    { date: "2026-12-18", title: "ROCK IN PEACE", place: "Konzerthaus Weinviertel, Ziersdorf", time: "19:30", type: "rip", ticket: "https://konzerthaus-weinviertel.at/ticket/" },
     { date: "2026-12-26", title: "N!DDL & friends am Wintermarkt", place: "Wintermarkt im Prater, Wien", time: "19:30", type: "special", ticket: "" },
-    { date: "2027-01-14", title: "VIENNESE LADIES Gospel Group", place: "KULT ZELT Peyerbach", time: "19:30", type: "gospel", ticket: "https://www.niddl.com/" },
-    { date: "2027-01-21", title: "N!DDL – a tribute to TINA TURNER", place: "KULT ZELT Peyerbach", time: "19:30", type: "tina", ticket: "https://www.niddl.com/" },
+    { date: "2027-01-14", title: "VIENNESE LADIES Gospel Group", place: "Kult-Zelt Payerbach", time: "19:30", type: "gospel", ticket: "https://www.oeticket.com/city/payerbach-1189/venue/kult-zelt-payerbach-86391/" },
+    { date: "2027-01-21", title: "N!DDL – a tribute to TINA TURNER", place: "Kult-Zelt Payerbach", time: "19:30", type: "tina", ticket: "https://www.oeticket.com/city/payerbach-1189/venue/kult-zelt-payerbach-86391/" },
     { date: "2027-05-08", title: "N!DDL – a tribute to TINA TURNER", place: "Bayern – Infos folgen", time: "", type: "tina", ticket: "" },
-    { date: "2027-10-07", title: "TCB Elvis Cruise feat. N!DDL (bis 14.10.)", place: "TCB Cruise 2027 – Dennis Jale & The Original Musicians Of Elvis & Friends", time: "", type: "elvis", ticket: "https://www.niddl.com/" }
+    { date: "2027-10-07", title: "TCB Elvis Cruise feat. N!DDL (bis 14.10.)", place: "TCB Cruise 2027 – Dennis Jale & The Original Musicians Of Elvis & Friends", time: "", type: "elvis", ticket: "https://dennis-jale.com/en/good-old-rocknroll/tcb-cruise-2027/", ticketLabel: "Buchen" }
   ],
   types: {
     tina: { label: "Tina Tribute", color: "#FF2E88" },
@@ -733,18 +747,20 @@ window.NIDDL_DATA = {
     danzer: { label: "Danzermania", color: "#9DFF00" },
     special: { label: "Special", color: "#FFF6E5" }
   },
+  /* Hörproben: MP3 nach assets/audio/ legen und bei "audio" eintragen, z. B. "assets/audio/i-loss-mi-ned-vabiagn.mp3".
+     start = ab welcher Sekunde die Hörprobe beginnt (z. B. beim Refrain). Gespielt werden 30 Sekunden. */
   releases: [
-    { title: "I loss mi ned vabiagn", sub: "Die neue Single" },
-    { title: "Nimma so weh", sub: "Cello Piano Version" },
-    { title: "Cornetto und Badegwand", sub: "Single" },
-    { title: "Unter dem Meer", sub: "mit Jerome Collard" },
-    { title: "leiwande Zeit", sub: "feat. Lenard Luis" },
-    { title: "So selten bist du", sub: "mit Willi Dussmann" },
-    { title: "jetzt oder nie", sub: "Single" },
-    { title: "A1 Smile Weihnachtssong", sub: "Weihnachten" },
-    { title: "Nimma so weh", sub: "Original" },
-    { title: "Verliabt", sub: "Single" },
-    { title: "Pullover", sub: "Dennis Jale & Niddl" }
+    { title: "I loss mi ned vabiagn", sub: "Die neue Single", audio: "", start: 0 },
+    { title: "Nimma so weh", sub: "Cello Piano Version", audio: "", start: 0 },
+    { title: "Cornetto und Badegwand", sub: "Single", audio: "", start: 0 },
+    { title: "Unter dem Meer", sub: "mit Jerome Collard", audio: "", start: 0 },
+    { title: "leiwande Zeit", sub: "feat. Lenard Luis", audio: "", start: 0 },
+    { title: "So selten bist du", sub: "mit Willi Dussmann", audio: "", start: 0 },
+    { title: "jetzt oder nie", sub: "Single", audio: "", start: 0 },
+    { title: "A1 Smile Weihnachtssong", sub: "Weihnachten", audio: "", start: 0 },
+    { title: "Nimma so weh", sub: "Original", audio: "", start: 0 },
+    { title: "Verliabt", sub: "Single", audio: "", start: 0 },
+    { title: "Pullover", sub: "Dennis Jale & Niddl", audio: "", start: 0 }
   ],
   formats: [
     "Die Energie, die Stimm, die Haxn. Meine Verbeugung vor der Queen of Rock'n'Roll. Ka Kopie, pure Liebe. Für Theater, Säle und Open Airs.",
@@ -944,7 +960,7 @@ window.NIDDL_DATA = {
     gigList.innerHTML = gigs.filter(function (g) { return f === "all" || g.type === f; }).map(function (g) {
       var d = fmtDate(g.date), t = DATA.types[g.type];
       return '<li style="--c:' + t.color + '"><time datetime="' + g.date + '">' + d.full + '</time><div><div class="t">' + g.title + '</div><div class="p">' + g.place + (g.time ? " · " + g.time : "") + "</div></div>" +
-        (g.ticket ? '<a class="btn small" href="' + g.ticket + '" target="_blank" rel="noopener">Tickets</a>' : '<span class="soon">Infos folgen</span>') + "</li>";
+        (g.soldout ? '<span class="sold">Ausverkauft</span>' : g.ticket ? '<a class="btn small" href="' + g.ticket + '" target="_blank" rel="noopener">' + (g.ticketLabel || "Tickets") + "</a>" : '<span class="soon">Infos folgen</span>') + "</li>";
     }).join("") || "<li>Grad nix in der Kategorie. Bald wieder!</li>";
   }
   renderGigs("all");
@@ -961,7 +977,8 @@ window.NIDDL_DATA = {
     $("#gigDay").textContent = d.day; $("#gigMonth").textContent = d.mon + " " + g.date.slice(2, 4);
     $("#gigTag").textContent = t.label; $("#gigTitle").textContent = g.title;
     $("#gigPlace").textContent = g.place + (g.time ? " · " + g.time : "");
-    var l = $("#gigLink"); if (g.ticket) { l.hidden = false; l.href = g.ticket; } else { l.hidden = true; }
+    var l = $("#gigLink"); if (g.ticket && !g.soldout) { l.hidden = false; l.href = g.ticket; l.textContent = g.ticketLabel || "Tickets"; } else { l.hidden = true; }
+    $("#gigSold").hidden = !g.soldout;
     gigCard.style.setProperty("--gc", t.color);
     gigCard.classList.remove("flash"); void gigCard.offsetWidth; gigCard.classList.add("flash");
   }
@@ -971,23 +988,55 @@ window.NIDDL_DATA = {
   var tapeCols = ["#FF2E88", "#2E6BFF", "#FFD400", "#9DFF00", "#FF6A00"];
   $("#releases").innerHTML = DATA.releases.map(function (r, i) {
     var q = encodeURIComponent("Niddl " + r.title);
-    return '<li><a style="--c:' + tapeCols[i % 5] + '" href="https://www.youtube.com/results?search_query=' + q + '" target="_blank" rel="noopener"><span class="mini" aria-hidden="true"></span><span><b>' + r.title + "</b><small>" + r.sub + "</small></span></a></li>";
+    return '<li style="--c:' + tapeCols[i % 5] + '"><button class="play" type="button" data-i="' + i + '" aria-label="Hörprobe: ' + r.title + '"' + (r.audio ? "" : ' data-soon="1"') + '><span class="ic" aria-hidden="true">▶</span><i class="bar" aria-hidden="true"></i></button>' +
+      '<span class="info"><b>' + r.title + "</b><small>" + r.sub + (r.audio ? "" : " · Hörprobe folgt") + '</small></span><a class="yt" href="https://www.youtube.com/results?search_query=' + q + '" target="_blank" rel="noopener" aria-label="' + r.title + ' auf YouTube">YouTube ↗</a></li>';
   }).join("");
+
+  // Hörproben-Player (30 Sek.), der Soundtrack pausiert solange
+  var snip = new Audio(), snipIdx = -1, snipTimer = null, snipFade = null, musicWasOn = false;
+  snip.preload = "none";
+  function snipUI() {
+    $$("#releases .play").forEach(function (b) { var on = +b.dataset.i === snipIdx; b.classList.toggle("on", on); $(".ic", b).textContent = on ? "■" : "▶"; });
+    var np = $("#npPlay"), on = snipIdx === curTape && snipIdx >= 0;
+    np.classList.toggle("on", on); $(".ic", np).textContent = on ? "■" : "▶"; $(".tx", np).textContent = on ? "Stopp" : (DATA.releases[curTape] && DATA.releases[curTape].audio ? "Hörprobe" : "Hörprobe folgt");
+  }
+  function stopSnippet(resume) {
+    clearTimeout(snipTimer); clearInterval(snipFade); snip.pause(); snipIdx = -1;
+    document.documentElement.style.setProperty("--snip", 0); snipUI();
+    if (resume && musicWasOn && soundOn && window.NiddlSoundtrack) NiddlSoundtrack.start(actx, master, DATA.soundtrack || "");
+    musicWasOn = false;
+  }
+  function playSnippet(i) {
+    var r = DATA.releases[i];
+    if (snipIdx === i) { stopSnippet(true); return; }
+    if (!r.audio) { $("#rlNote").textContent = "„" + r.title + "“: Hörprobe kommt bald. Bis dahin auf Spotify oder YouTube reinhören!"; tick(); return; }
+    if (snipIdx >= 0) stopSnippet(false);
+    if (window.NiddlSoundtrack && NiddlSoundtrack.playing) { musicWasOn = true; NiddlSoundtrack.stop(); }
+    snipIdx = i; snip.src = asset(r.audio); snip.volume = 0;
+    var go = function () { try { snip.currentTime = r.start || 0; } catch (e) { } };
+    snip.addEventListener("loadedmetadata", go, { once: true });
+    snip.play().then(function () {
+      var v = 0; snipFade = setInterval(function () { v = Math.min(1, v + 0.08); snip.volume = v; if (v >= 1) clearInterval(snipFade); }, 60);
+    }).catch(function () { $("#rlNote").textContent = "Die Hörprobe konnte nicht geladen werden."; stopSnippet(true); });
+    snipTimer = setTimeout(function () { stopSnippet(true); }, 30000);
+    $("#rlNote").textContent = "▶ " + r.title + " – Hörprobe (30 Sek.)"; snipUI();
+  }
+  snip.addEventListener("timeupdate", function () { if (snipIdx < 0) return; var r = DATA.releases[snipIdx]; document.documentElement.style.setProperty("--snip", clamp((snip.currentTime - (r.start || 0)) / 30, 0, 1).toFixed(3)); });
+  snip.addEventListener("ended", function () { stopSnippet(true); });
+  $$("#releases .play").forEach(function (b) { b.addEventListener("click", function () { playSnippet(+b.dataset.i); }); });
+  $("#npPlay").addEventListener("click", function () { playSnippet(curTape); });
   var curTape = -1;
   function setTape(i) {
     if (i === curTape) return; if (curTape >= 0) { tick(0.8); chord(196 * Math.pow(2, (i % 7) / 12)); } curTape = i;
     $("#tapeTitle").textContent = DATA.releases[i].title; $("#tapeSub").textContent = DATA.releases[i].sub;
     $(".now-playing").style.setProperty("--tc", tapeCols[i % 5]);
+    if (typeof snipUI === "function" && $("#npPlay")) snipUI();
   }
   setTape(0);
 
   // photos: thumbnails + lightbox
   var PH = DATA.photos, lb = $("#lightbox"), lbIdx = 0, lastFocus = null;
   var phCols = ["var(--pink)", "var(--blue)", "var(--sun)", "var(--lime)", "var(--orange)"];
-  $("#thumbs").innerHTML = PH.map(function (p, i) {
-    return '<li><button type="button" data-i="' + i + '" style="--c:' + phCols[i % 5] + ';--r:' + (((i * 37) % 7) - 3) + 'deg" aria-label="Foto: ' + p.cap + '"><img src="' + asset("assets/img/" + p.file + ".jpg") + '" alt="' + p.cap + '" loading="lazy" width="300" height="300"></button></li>';
-  }).join("");
-  $$("#thumbs button").forEach(function (b) { b.addEventListener("click", function () { openLb(+b.dataset.i); }); });
   function showLb(i) {
     lbIdx = (i + PH.length) % PH.length; var p = PH[lbIdx];
     $("#lbImg").src = asset("assets/img/full/" + p.file + ".jpg"); $("#lbImg").alt = p.cap; $("#lbCap").textContent = p.cap; $("#lbCredit").textContent = p.credit || "";
@@ -1034,6 +1083,7 @@ window.NIDDL_DATA = {
   }
   var soundBtn = $("#sound"), heroBtn = $("#soundHero");
   function setSound(on) {
+    if (on && snipIdx >= 0) stopSnippet(false);
     soundOn = on; soundBtn.setAttribute("aria-pressed", on); $(".lbl", soundBtn).textContent = on ? "Soundtrack an" : "Ton aus";
     heroBtn.textContent = on ? "🔇 Ton aus" : "🔊 Mit Ton erleben";
     if (on && ac()) { actx.resume(); pop(1.2); if (window.NiddlSoundtrack) NiddlSoundtrack.start(actx, master, DATA.soundtrack || ""); }
@@ -1514,7 +1564,8 @@ window.NIDDL_DATA = {
       var a = i / NT * Math.PI * 2; g.position.set(Math.sin(a) * TR, Math.sin(t * 1.2 + i) * 0.08, Math.cos(a) * TR); g.rotation.y = a;
       var front = clamp(1 - Math.abs(((i - cur) % NT + NT + NT / 2) % NT - NT / 2), 0, 1);
       g.scale.setScalar(1 + front * 0.25); g.position.y += front * 0.25;
-      g.userData.reels.forEach(function (r) { r.rotation.y -= dt * (0.6 + front * 6); });
+      var sp = i === snipIdx ? 14 : 0.6 + front * 6;
+      g.userData.reels.forEach(function (r) { r.rotation.y -= dt * sp; });
     });
     eq.forEach(function (bar, i) { var h = reduce ? 0.5 : 0.25 + Math.abs(Math.sin(t * (3 + i * 0.37) + i) * Math.cos(t * 1.7 + i * 0.5)) * 1.4; bar.scale.y = h; bar.position.y = -2.1 + h / 2; });
   }
